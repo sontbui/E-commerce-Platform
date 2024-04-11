@@ -11,7 +11,7 @@
 }
 
 .product-image {
-    height: 100%;
+    height: auto;
     width: 100%;
     object-fit: cover;
     border: 100px black;
@@ -117,24 +117,26 @@
     background-color: black;
     border-color: white;
    
-
-    &::before {
-      position: absolute;
-      content: '';
-      z-index: -1;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: red; // Thay thế bằng màu nền hover mong muốn của nút
-      transform: scaleX(0);
-      transform-origin: 0 50%;
-      transition: transform 0.3s ease-out;
+    &:hover{
+      background-color: rgba(49, 49, 49, 0.545);
     }
+    // &::before {
+    //   position: absolute;
+    //   content: '';
+    //   z-index: -1;
+    //   top: 0;
+    //   left: 0;
+    //   right: 0;
+    //   bottom: 0;
+    //   background: red; // Thay thế bằng màu nền hover mong muốn của nút
+    //   transform: scaleX(0);
+    //   transform-origin: 0 50%;
+    //   transition: transform 0.3s ease-out;
+    // }
   
-    &:hover::before {
-      transform: scaleX(1);
-    }
+    // &:hover::before {
+    //   transform: scaleX(1);
+    // }
   }
   
 

@@ -51,7 +51,9 @@ export class OrderDetailComponent implements OnInit {
   ngOnInit(): void {
     this.getOrderDetails();
   }
-  
+  trackByFn(index: number, item: any): any {
+    return item.id; // Sử dụng một trường duy nhất trong item như ID
+}
   getOrderDetails(): void {
     debugger
     const orderId = Number(this.route.snapshot.paramMap.get('orderId'));

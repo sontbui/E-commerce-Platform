@@ -68,7 +68,7 @@ export class OrderComponent implements OnInit{
     this.orderForm = this.formBuilder.group({
       fullname: ['', Validators.required], // fullname là FormControl bắt buộc      
       email: ['', [Validators.email]], // Sử dụng Validators.email cho kiểm tra định dạng email
-      phone_number: ['', [Validators.required, Validators.minLength(6)]], // phone_number bắt buộc và ít nhất 6 ký tự
+      phone_number: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(11), Validators.pattern("^[0-9]+$")]], // phone_number bắt buộc và ít nhất 6 ký tự
       address: ['', [Validators.required, Validators.minLength(5)]], // address bắt buộc và ít nhất 5 ký tự
       note: [''],
       couponCode: [''],
@@ -146,7 +146,8 @@ export class OrderComponent implements OnInit{
       this.orderService.placeOrder(this.orderData).subscribe({
         next: (response: ApiResponse) => {
           debugger;          
-          console.error('Đặt hàng thành công');
+          console.error('Order successfully');
+          alert('Order successfully');
           this.cartService.clearCart();
           this.router.navigate(['/']);
         },
@@ -156,12 +157,14 @@ export class OrderComponent implements OnInit{
         },
         error: (error: HttpErrorResponse) => {
           debugger;
-          console.error(`Lỗi khi đặt hàng: ${error?.error?.message ?? ''}`);
+          console.error(`Error: ${error?.error?.message ?? ''}`);
+          alert('Lost information. Please check information again !!!');
         },
       });
     } else {
       // Hiển thị thông báo lỗi hoặc xử lý khác
-      console.error('Dữ liệu không hợp lệ. Vui lòng kiểm tra lại.');
+      console.error('Lost information. Please check information !!!');
+      alert('Error');
     }        
   }
     
@@ -180,16 +183,16 @@ export class OrderComponent implements OnInit{
     this.updateCartFromCartItems();
     this.calculateTotal();
   }    
-  
+
   // Hàm tính tổng tiền
   calculateTotal(): void {
       this.totalAmount = this.cartItems.reduce(
-          (total, item) => total + item.product.price * item.quantity,
+          (total, item) => total + (item.product.price - (item.product.price * 15 / 100))  * item.quantity,
           0
       );
   }
   confirmDelete(index: number): void {
-    if (confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')) {
+    if (confirm('Do you want to remove this?')) {
       // Xóa sản phẩm khỏi danh sách cartItems
       this.cartItems.splice(index, 1);
       // Cập nhật lại this.cart từ this.cartItems

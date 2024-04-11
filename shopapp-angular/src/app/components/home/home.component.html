@@ -29,8 +29,15 @@
             <div class="product-item" (click)="onProductClick(product.id)">
                 <img [src]="product.url" alt="Product Image" class="product-image">
                 <h3 class="product-name">{{ product.name }}</h3>
-                <p class="product-description">{{ product.description }}</p>
-                <p class="product-price">Price: ${{ product.price }}</p>                
+                <!-- <p class="product-description">{{ product.description }}</p> -->
+                <p class="product-price">
+                  Price: 
+                 <del> ${{ product.price }}</del>
+                  <span class="arrow">→</span>
+                 <span class="price-after"> ${{ product.price }}
+
+                 </span>
+                </p>                
             </div>
           </div>
         }        
@@ -68,7 +75,7 @@
           </li>
           <li class="page-item">
             <a class="page-link" (click)="onPageChange(totalPages - 1)">Last</a>
-          </li>
+          </li> 
          }        
       </ul>
     </nav>

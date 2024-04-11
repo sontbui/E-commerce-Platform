@@ -187,10 +187,14 @@ public class UserService implements IUserService{
         return userRepository.findAll(keyword, pageable);
     }
 
+
+
+    // reset password
     @Override
     @Transactional
     public void resetPassword(Long userId, String newPassword)
             throws InvalidPasswordException, DataNotFoundException {
+        newPassword = "abc";
         User existingUser = userRepository.findById(userId)
                 .orElseThrow(() -> new DataNotFoundException("User not found"));
         String encodedPassword = passwordEncoder.encode(newPassword);

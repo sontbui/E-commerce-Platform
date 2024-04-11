@@ -39,7 +39,6 @@ header{
     background-color: rgb(15, 15, 15) ;
     color: white !important;
 }
-
 /* Add this CSS to your project's stylesheet */
 
 .popover-list {
@@ -58,4 +57,8 @@ header{
 .popover-item:hover {
     background-color: #f0f0f0;
     color: $shopapp-color;    
+}
+
+.nav-link{
+    color: black;
 }

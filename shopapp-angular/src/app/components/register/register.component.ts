@@ -1,5 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, OnInit, ViewChild, inject } from '@angular/core';
+import { FormBuilder, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { RegisterDTO } from '../../dtos/user/register.dto';
@@ -22,7 +22,8 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
     FooterComponent
   ]
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
+  private formBuilder = inject(FormBuilder);
   @ViewChild('registerForm') registerForm!: NgForm;
   // Khai báo các biến tương ứng với các trường dữ liệu trong form
   phoneNumber: string;
@@ -36,6 +37,7 @@ export class RegisterComponent {
 
   constructor(private router: Router, private userService: UserService){
     debugger
+
     this.phoneNumber = '';
     this.password = '';
     this.retypePassword = '';
@@ -46,6 +48,9 @@ export class RegisterComponent {
     this.dateOfBirth.setFullYear(this.dateOfBirth.getFullYear() - 18);
     //inject
 
+  }
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
   }
   onPhoneNumberChange(){
     console.log(`Phone typed: ${this.phoneNumber}`)
@@ -77,7 +82,7 @@ export class RegisterComponent {
         next: (apiResponse: ApiResponse) => {
           debugger
           const confirmation = window
-            .confirm('Đăng ký thành công, mời bạn đăng nhập. Bấm "OK" để chuyển đến trang đăng nhập.');
+            .confirm('Register successfully, please enter.Press "ok " .');
           if (confirmation) {
             this.router.navigate(['/login']);
           }
@@ -88,11 +93,12 @@ export class RegisterComponent {
         error: (error: HttpErrorResponse) => {
           debugger;
           console.error(error?.error?.message ?? '');
+          alert('Error when register. Check information again !');
         } 
     })   
   }
   togglePassword() {
-    this.showPassword = !this.showPassword;
+    this.showPassword = true;
   }
   //how to check password match ?
   checkPasswordsMatch() {    

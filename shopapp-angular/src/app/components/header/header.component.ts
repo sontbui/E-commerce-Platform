@@ -54,7 +54,7 @@ export class HeaderComponent implements OnInit{
       this.router.navigate(['/user-profile']);                      
     } else if(index === 1){
       debugger
-      this.router.navigate(['/orders',this.userResponse?.id]); 
+      this.router.navigate(['/orders/user'], { queryParams: { id: this.userResponse?.id } });
     }
     else if (index === 2) {
       this.userService.removeUserFromLocalStorage();

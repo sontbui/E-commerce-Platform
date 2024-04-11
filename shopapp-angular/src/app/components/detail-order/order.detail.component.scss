@@ -1,7 +1,7 @@
 @import '../../styles/shared-styles.scss';
 
 .container {
-    color: white;
+    color: rgb(0, 0, 0);
 }
 .confirmation-container {
     margin: 50px auto;
@@ -40,6 +40,7 @@ th,
 td {
     padding: 10px;
     text-align: center;
+    color:white;
 }
 .btn-gradient {
     background: linear-gradient(to right, $shopapp-tint-color, $shopapp-color);

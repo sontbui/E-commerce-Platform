@@ -45,10 +45,10 @@ export class UserProfileComponent implements OnInit {
     private tokenService: TokenService,
   ){        
     this.userProfileForm = this.formBuilder.group({
-      fullname: [''],     
-      address: ['', [Validators.minLength(3)]],       
-      password: ['', [Validators.minLength(3)]], 
-      retype_password: ['', [Validators.minLength(3)]], 
+      fullname: ['',[Validators.minLength(5)]],     
+      address: ['',[Validators.minLength(10)]],       
+      password: ['', [Validators.minLength(6)]], 
+      retype_password: ['', [Validators.minLength(6)]], 
       date_of_birth: [Date.now()],      
     }, {
       validators: this.passwordMatchValidator// Custom validator function for password match
@@ -81,17 +81,33 @@ export class UserProfileComponent implements OnInit {
       }
     })
   }
-  passwordMatchValidator(): ValidatorFn {
-    return (formGroup: AbstractControl): ValidationErrors | null => {
-      const password = formGroup.get('password')?.value;
-      const retypedPassword = formGroup.get('retype_password')?.value;
-      if (password !== retypedPassword) {
-        return { passwordMismatch: true };
-      }
-  
+  // passwordMatchValidator(): ValidatorFn {
+  //   return (formGroup: AbstractControl): ValidationErrors | null => {
+  //     const password = formGroup.get('password')?.value;
+  //     const retypedPassword = formGroup.get('retype_password')?.value;
+  //     if (!password || !retypedPassword) {
+  //       return null;
+  //     }
+  //     if (password !== retypedPassword) {
+  //       return { passwordMismatch: true };
+  //     }
+  //     return null;
+  //   };
+  // }
+  passwordMatchValidator: ValidatorFn = (formGroup: AbstractControl): ValidationErrors | null => {
+    const password = formGroup.get('password')?.value;
+    const retypedPassword = formGroup.get('retype_password')?.value;
+
+    if (!password || !retypedPassword) {
       return null;
-    };
-  }
+    }
+
+    if (password !== retypedPassword) {
+      return { passwordMismatch: true };
+    }
+
+    return null;
+  };
   save(): void {
     debugger
     if (this.userProfileForm.valid) {
@@ -108,16 +124,19 @@ export class UserProfileComponent implements OnInit {
           next: (response: any) => {
             this.userService.removeUserFromLocalStorage();
             this.tokenService.removeToken();
+            alert("Update account succesfully !!");
             this.router.navigate(['/login']);
           },
           error: (error: HttpErrorResponse) => {
             debugger;
             console.error(error?.error?.message ?? '');
+            alert("Lost information !!" + error?.error?.message ?? ' ');
           } 
         });
     } else {
       if (this.userProfileForm.hasError('passwordMismatch')) {        
-        console.error('Mật khẩu và mật khẩu gõ lại chưa chính xác')
+        console.error("Two passwords don't match together");
+        alert("Two passwords don't match together");
       }
     }
   }    
