@@ -143,6 +143,7 @@ export class LoginComponent implements OnInit{
       error: (error: HttpErrorResponse) => {
         debugger;
         console.error(error?.error?.message ?? '');
+        alert('Wrong information');
       } 
     });
   }
