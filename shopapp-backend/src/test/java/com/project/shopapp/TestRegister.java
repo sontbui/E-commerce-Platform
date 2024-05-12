@@ -22,7 +22,10 @@ public class TestRegister {
     public void TestCase9(){
         driver.findElement(By.name("phone")).sendKeys("0963101750");
         driver.findElement(By.name("password")).sendKeys("123456");
-
+        driver.findElement(By.name("retypePassword")).sendKeys("123456");
+        driver.findElement(By.name("dateOfBirth")).sendKeys("10102000");
+        driver.findElement(By.name("address")).sendKeys("HCM");
+        driver.findElement(new By.ByClassName("register-button")).click();
     }
 
 
