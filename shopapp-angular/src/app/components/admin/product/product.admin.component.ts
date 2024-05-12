@@ -58,27 +58,26 @@ export class ProductAdminComponent implements OnInit {
       this.getProducts(this.keyword.trim(), this.selectedCategoryId, this.currentPage, this.itemsPerPage);
     }
     getProducts(keyword: string, selectedCategoryId: number, page: number, limit: number) {
+      debugger;
       this.productService.getProducts(keyword, selectedCategoryId, page, limit).subscribe({
-        next: (apiResponse: ApiResponse) => {
-          const products = apiResponse?.data as Product[];
-          if (Array.isArray(products)) {
-            products.forEach((product: Product) => {
-              if (product) {
-                product.url = `${environment.apiBaseUrl}/products/images/${product.thumbnail}`;
-              }
-            });
-            this.products = products;
-            this.totalPages = apiResponse?.data.totalPages;
-            this.visiblePages = this.generateVisiblePageArray(this.currentPage, this.totalPages);
-          } else {
-            
-          }
+        next: (apiresponse: ApiResponse) => {
+          debugger;
+          const response = apiresponse.data;
+          response.products.forEach((product: Product) => {          
+            product.url = `${environment.apiBaseUrl}/products/images/${product.thumbnail}`;
+          });
+          this.products = response.products;
+          this.totalPages = response.totalPages;
+          this.visiblePages = this.generateVisiblePageArray(this.currentPage, this.totalPages);
         },
-        complete: () => { },
+        complete: () => {
+          debugger;
+        },
         error: (error: HttpErrorResponse) => {
+          debugger;
           console.error(error?.error?.message ?? '');
         }
-      });
+      });    
     }
     
     onPageChange(page: number) {
