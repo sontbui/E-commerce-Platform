@@ -47,8 +47,8 @@ export class LoginComponent implements OnInit{
   password: string = '11223344';
 
   */
-  phoneNumber: string = '33445566';
-  password: string = '123456789';
+  phoneNumber: string = '';
+  password: string = '';
   showPassword: boolean = false;
 
   roles: Role[] = []; // Mảng roles
@@ -72,7 +72,7 @@ export class LoginComponent implements OnInit{
   ngOnInit() {
     // Gọi API lấy danh sách roles và lưu vào biến roles
     debugger
-    this.roleService.getRoles().subscribe({      
+    this.roleService.getRoles().subscribe({
       next: (apiResponse: ApiResponse) => { // Sử dụng kiểu Role[]
         debugger
         const roles = apiResponse.data
@@ -81,17 +81,17 @@ export class LoginComponent implements OnInit{
       },
       complete: () => {
         debugger
-      },  
+      },
       error: (error: HttpErrorResponse) => {
         debugger;
         console.error(error?.error?.message ?? '');
-      } 
+      }
     });
   }
   createAccount() {
     debugger
     // Chuyển hướng người dùng đến trang đăng ký (hoặc trang tạo tài khoản)
-    this.router.navigate(['/register']); 
+    this.router.navigate(['/register']);
   }
   login() {
     const message = `phone: ${this.phoneNumber}` +
@@ -108,7 +108,7 @@ export class LoginComponent implements OnInit{
       next: (apiResponse: ApiResponse) => {
         debugger;
         const { token } = apiResponse.data;
-        if (this.rememberMe) {          
+        if (this.rememberMe) {
           this.tokenService.setToken(token);
           debugger;
           this.userService.getUserDetail(token).subscribe({
@@ -117,14 +117,14 @@ export class LoginComponent implements OnInit{
               this.userResponse = {
                 ...apiResponse2.data,
                 date_of_birth: new Date(apiResponse2.data.date_of_birth),
-              };    
-              this.userService.saveUserResponseToLocalStorage(this.userResponse); 
+              };
+              this.userService.saveUserResponseToLocalStorage(this.userResponse);
               if(this.userResponse?.role.name == 'admin') {
-                this.router.navigate(['/admin']);    
+                this.router.navigate(['/admin']);
               } else if(this.userResponse?.role.name == 'user') {
-                this.router.navigate(['/']);                      
+                this.router.navigate(['/']);
               }
-              
+
             },
             complete: () => {
               this.cartService.refreshCart();
@@ -133,9 +133,9 @@ export class LoginComponent implements OnInit{
             error: (error: HttpErrorResponse) => {
               debugger;
               console.error(error?.error?.message ?? '');
-            } 
+            }
           })
-        }                        
+        }
       },
       complete: () => {
         debugger;
@@ -144,7 +144,7 @@ export class LoginComponent implements OnInit{
         debugger;
         console.error(error?.error?.message ?? '');
         alert('Wrong information');
-      } 
+      }
     });
   }
   togglePassword() {
