@@ -11,7 +11,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ProductImageDTO {
+public class    ProductImageDTO {
     @JsonProperty("product_id")
     @Min(value = 1, message = "Product's ID must be > 0")
     private Long productId;
