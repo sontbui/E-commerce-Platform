@@ -116,7 +116,7 @@
 
                                 <td><del class="price-original">{{ (item.product.price ) | number:'1.2-2' }}</del></td>
                                 <td><span class="arrow">→</span></td>
-                                <td class="price-after">{{ ((item.product.price - ( item.product.price * 15 /100 )) * item.quantity) |
+                                <td class="price-after">{{ ((item.product.price * 0.95 ) * item.quantity) |
                                     number:'1.2-2' }}</td>
                                 <td>
                                     <button class="btn btn-danger" (click)="confirmDelete(i)">
@@ -142,7 +142,7 @@
                     <h6 class="header-text text-end ">You got discount: ${{ couponDiscount | number:'1.2-2'}} </h6>
                 </div>
                 }
-                <div class="text-start mt-3">
+                <div class="text-start mt-3" *ngIf="cartItems.length > 0">
                     <button (click)="placeOrder()" class="btn  orderBTN"  type="button">Order</button>
                 </div>
             </div>      

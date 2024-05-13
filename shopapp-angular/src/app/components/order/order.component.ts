@@ -187,17 +187,16 @@ export class OrderComponent implements OnInit{
   // Hàm tính tổng tiền
   calculateTotal(): void {
       this.totalAmount = this.cartItems.reduce(
-          (total, item) => total + (item.product.price - (item.product.price * 15 / 100))  * item.quantity,
+          (total, item) =>  total + (item.product.price * 0.95)  * item.quantity,
           0
       );
   }
   confirmDelete(index: number): void {
     if (confirm('Do you want to remove this?')) {
-      // Xóa sản phẩm khỏi danh sách cartItems
+      // delete prct out of  cartItems
       this.cartItems.splice(index, 1);
-      // Cập nhật lại this.cart từ this.cartItems
+      // update this.cart from this.cartItems
       this.updateCartFromCartItems();
-      // Tính toán lại tổng tiền
       this.calculateTotal();
     }
   }

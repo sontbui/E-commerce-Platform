@@ -43,8 +43,9 @@ export class OrderAdminComponent implements OnInit{
   }
   ngOnInit(): void {
     debugger
-    this.currentPage = Number(this.localStorage?.getItem('currentOrderAdminPage')) || 0; 
     this.getAllOrders(this.keyword, this.currentPage, this.itemsPerPage);
+    this.currentPage = Number(this.localStorage?.getItem('currentOrderAdminPage')) || 0; 
+    
   }
   searchOrders() {
     this.currentPage = 0;
@@ -58,12 +59,14 @@ export class OrderAdminComponent implements OnInit{
     this.orderService.getAllOrders(keyword, page, limit).subscribe({
       next: (apiResponse: ApiResponse) => {
         debugger        
-        this.orders = apiResponse.data.orders;
+        this.orders = apiResponse.data;
         this.totalPages = apiResponse.data.totalPages;
         this.visiblePages = this.generateVisiblePageArray(this.currentPage, this.totalPages);
+        alert("adsad");
       },
       complete: () => {
         debugger;
+        
       },
       error: (error: HttpErrorResponse) => {
         debugger;
@@ -101,10 +104,12 @@ export class OrderAdminComponent implements OnInit{
       this.orderService.deleteOrder(id).subscribe({
         next: (response: ApiResponse) => {
           debugger 
+          const confirmation = window
+      .confirm('Delete successfull');
           location.reload();          
         },
         complete: () => {
-          debugger;          
+          debugger;  
         },
         error: (error: HttpErrorResponse) => {
           debugger;

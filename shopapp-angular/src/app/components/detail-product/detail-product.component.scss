@@ -9,11 +9,15 @@
 .container{
     color: black;
 }
-
+.square-image {
+  width: 100%; /* Kích thước cố định */
+  height: 10%; /* Kích thước cố định */
+  /* Ẩn phần dư thừa nếu hình ảnh lớn hơn kích thước */
+} 
 .product-image {
-    height: auto;
+    height: 10%;
     width: 100%;
-    object-fit: cover;
+    object-fit:cover;
     border: 100px black;
 }
 .thumbnail-container {

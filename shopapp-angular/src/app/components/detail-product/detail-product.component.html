@@ -4,7 +4,7 @@
         
     </div>    
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-6 product-frame">
         <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
             @for(image of product?.product_images;
@@ -50,7 +50,7 @@
           <p class="product-price ">
             <del class="product-price-origin">${{ product?.price }}</del>
             <span class="arrow">→</span>
-            ${{ product?.price }}
+            ${{ productAfter }}
             
           </p>
           <p class="product-total">Total: ${{ getTotalPrice() | number:'1.2-2' }}</p>
