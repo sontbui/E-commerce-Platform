@@ -56,7 +56,8 @@ export class OrderDetailComponent implements OnInit {
 }
   getOrderDetails(): void {
     debugger
-    const orderId = Number(this.route.snapshot.paramMap.get('orderId'));
+    // const orderId = Number(this.route.snapshot.paramMap.get('orderId'));
+    const orderId = Number(this.route.snapshot.queryParamMap.get('id'));
     this.orderService.getOrderById(orderId).subscribe({
       next: (apiResponse: ApiResponse) => {        
         debugger;   

@@ -16,7 +16,7 @@ import { ApiResponse } from '../responses/api.response';
 })
 export class OrderService {
   private apiUrl = `${environment.apiBaseUrl}/orders`;
-  private apiGetAllOrders = `${environment.apiBaseUrl}/orders/get-orders-by-keyword`;
+  private apiGetAllOrders = `${environment.apiBaseUrl}/orders/get-orders-by-keyword?`;
 
   constructor(private http: HttpClient) {}
 
@@ -25,18 +25,39 @@ export class OrderService {
     return this.http.post<ApiResponse>(this.apiUrl, orderData);
   }
   getOrderById(orderId: number): Observable<ApiResponse> {
+    debugger
     const url = `${environment.apiBaseUrl}/orders/${orderId}`;
     return this.http.get<ApiResponse>(url);
   }
-  getAllOrders(keyword:string,
-    page: number, limit: number
-  ): Observable<ApiResponse> {
-      const params = new HttpParams()
-      .set('keyword', keyword)      
-      .set('page', page.toString())
-      .set('limit', limit.toString());            
-      return this.http.get<ApiResponse>(this.apiGetAllOrders, { params });
+  // getAllOrders(keyword:string,
+  //   page: number, limit: number
+  // ): Observable<ApiResponse> {
+  //     let params = new HttpParams()
+  //     .set('page', page.toString())
+  //     .set('limit', limit.toString())
+  //     ;  
+  //     if (keyword !== null && keyword !== undefined && keyword !== '') {
+  //       params = params.set('keyword', keyword);
+  //     }
+  //     console.error("Order service URL:", this.apiGetAllOrders, params.toString());
+  //     return this.http.get<ApiResponse>(this.apiGetAllOrders, { params });
+     
+  // }
+  getAllOrders(keyword: string, page: number, limit: number) {
+    let params = new HttpParams()
+      .set('page', page.toString())  // Không có khoảng trắng trước 'page'
+      .set('limit', limit.toString());
+  
+    // Chỉ thiết lập tham số 'keyword' nếu có giá trị được truyền vào
+    if (keyword !== null && keyword !== undefined && keyword.trim() !== '') {
+      params = params.set('keyword', keyword.trim()); // Cắt bỏ khoảng trắng ở đầu và cuối chuỗi
+    }
+  
+    return this.http.get<ApiResponse>(this.apiGetAllOrders, { params });
   }
+  
+ 
+  
   updateOrder(orderId: number, orderData: OrderDTO): Observable<ApiResponse> {
     const url = `${environment.apiBaseUrl}/orders/${orderId}`;
     return this.http.put<ApiResponse>(url, orderData);

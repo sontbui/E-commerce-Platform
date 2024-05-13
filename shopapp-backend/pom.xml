@@ -18,7 +18,7 @@
 	</properties>
 	<dependencies>
 
-<!--		test-->
+
 		<dependency>
 			<groupId>io.github.bonigarcia</groupId>
 			<artifactId>webdrivermanager</artifactId>
@@ -35,7 +35,6 @@
 			<artifactId>selenium-java</artifactId>
 			<version>4.20.0</version>
 		</dependency>
-<!--test-->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

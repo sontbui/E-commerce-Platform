@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql8-container
--- Generation Time: Apr 06, 2024 at 10:18 PM
+-- Generation Time: May 13, 2024 at 08:31 AM
 -- Server version: 8.2.0
--- PHP Version: 8.2.8
+-- PHP Version: 8.2.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -38,6 +38,7 @@ CREATE TABLE `categories` (
 
 INSERT INTO `categories` (`id`, `name`) VALUES
 (11, 'Accessories'),
+(12, 'Iphone'),
 (9, 'Laptop'),
 (10, 'PC'),
 (8, 'TV');
@@ -157,9 +158,11 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `user_id`, `fullname`, `email`, `phone_number`, `address`, `note`, `order_date`, `status`, `total_money`, `shipping_method`, `shipping_address`, `shipping_date`, `tracking_number`, `payment_method`, `active`, `coupon_id`) VALUES
-(45, 10, 'Bùi Thanh Sơn', 'sonbuithanh306@gmail.com', '0363079576', '926 nguyễn văn cừ', '', '2024-04-07 00:00:00', 'pending', 1111, 'express', NULL, '2024-04-07', NULL, 'cod', 1, NULL),
-(46, 10, 'Bui ', 's@gmail.com', '1111111', 'sadada', 'as', '2024-04-07 00:00:00', 'pending', 1111, 'express', NULL, '2024-04-07', NULL, 'cod', 1, NULL),
-(47, 9, 'adasd', 's@gmail.com', '1212121', 'asdasda', 'asdad', '2024-04-07 00:00:00', 'pending', 3893, 'express', NULL, '2024-04-07', NULL, 'cod', 1, NULL);
+(48, 13, 'buithanh son', 'sonbui@gmail.com', '0363079576', 'dadasda', '', '2024-05-13 00:00:00', 'pending', 1827.5, 'express', NULL, '2024-05-13', NULL, 'cod', 0, NULL),
+(49, 13, 'Bùi Thanh Sơn', 'sonbuithanh306@gmail.com', '0363079576', '926 nguyễn văn cừ', '', NULL, 'pending', 1827.5, 'express', NULL, NULL, NULL, 'cod', 1, NULL),
+(50, 13, 'Bùi Thanh Sơn', 'sonbuithanh306@gmail.com', '0363079576', '926 nguyễn văn cừ', '', '2024-05-13 00:00:00', 'pending', 0, 'express', NULL, '2024-05-13', NULL, 'cod', 0, NULL),
+(51, 13, 'Bùi Thanh Sơn', 'sonbuithanh306@gmail.com', '0363079576', '926 nguyễn văn cừ', '', '2024-05-13 00:00:00', 'pending', 0, 'express', NULL, '2024-05-13', NULL, 'cod', 0, NULL),
+(52, 13, 'Bùi Thanh Sơn', 'sonbuithanh306@gmail.com', '0363079576', '926 nguyễn văn cừ', '', '2024-05-13 00:00:00', 'pending', 0, 'express', NULL, '2024-05-13', NULL, 'cod', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -183,10 +186,8 @@ CREATE TABLE `order_details` (
 --
 
 INSERT INTO `order_details` (`id`, `order_id`, `product_id`, `price`, `number_of_products`, `total_money`, `color`, `coupon_id`) VALUES
-(78, 45, 5782, 1111.00, 1, NULL, NULL, NULL),
-(79, 46, 5792, 1111.00, 1, NULL, NULL, NULL),
-(80, 47, 5783, 112.00, 5, NULL, NULL, NULL),
-(81, 47, 5782, 1111.00, 3, NULL, NULL, NULL);
+(82, 48, 5812, 2150.00, 1, NULL, NULL, NULL),
+(83, 49, 5812, 2150.00, 1, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -210,21 +211,21 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `price`, `thumbnail`, `description`, `created_at`, `updated_at`, `category_id`) VALUES
-(5782, 'aaaa', 1111.00, '4ec7a56d-99ae-421f-889c-a10b7c2bbd71_56628982926083', 'asa', '2024-04-06 18:11:34', '2024-04-06 18:11:34', 9),
-(5783, ' eeee', 112.00, '6d99dd53-bee9-4c6e-8270-1234d6ecd08e_57823638557291', 'asd', '2024-04-06 18:31:28', '2024-04-06 18:31:28', 9),
-(5784, 'jjjjj', 121121.00, 'c32e946b-ea68-400c-8554-105ec81d68f4_58056883063541', 'sdasda', '2024-04-06 18:35:22', '2024-04-06 18:35:22', 10),
-(5785, 'ewerwr', 1211.00, '6b8a6c3c-012c-4887-82a4-6c48c21a2b4e_59209321641916', 'dsda', '2024-04-06 18:54:34', '2024-04-06 18:54:34', 9),
-(5786, 'ggff', 121.00, 'd87c9a30-21fe-45d5-9250-821cb04a7d74_59221353779458', 'asdasd', '2024-04-06 18:54:46', '2024-04-06 18:54:46', 8),
-(5787, 'sdasd', 1212.00, '43eae6e8-4424-4f01-b494-2aba0d1775ee_59241945420375', 'dasda', '2024-04-06 18:55:07', '2024-04-06 18:55:07', 8),
-(5788, 'qweqw', 1111.00, '7f7371b7-d00e-43f6-900f-73bf4e141610_59260799839250', 'wdwqe', '2024-04-06 18:55:26', '2024-04-06 18:55:26', 9),
-(5789, 'asda', 111.00, '54816e8a-d1e8-4edb-b7f3-9f0e766d9185_59276255320625', 'asda', '2024-04-06 18:55:41', '2024-04-06 18:55:41', 9),
-(5790, 'asdad', 121.00, 'cc37b778-4631-450d-9abd-8b000b6e3f14_59313283646250', 'dasd', '2024-04-06 18:56:18', '2024-04-06 18:56:18', 9),
-(5791, 'asdasd', 12121.00, '65129249-e3d6-4bb5-86c4-ebafda2a1f19_59334123398583', 'aasda', '2024-04-06 18:56:39', '2024-04-06 18:56:39', 8),
-(5792, 'asdad', 1111.00, '40c73d90-0004-4de2-8a50-a484efadf779_59347857905041', 'sdasd', '2024-04-06 18:56:53', '2024-04-06 18:56:53', 9),
-(5793, 'fsdsdas', 1111.00, 'ae5240bd-b4b7-410e-a1ae-16d053bfc399_59359846083500', 'asdad', '2024-04-06 18:57:05', '2024-04-06 18:57:05', 10),
-(5794, 'asdad', 121.00, '58b1e797-7385-4a81-bc03-52726c4bc767_59377707937625', 'dfd', '2024-04-06 18:57:22', '2024-04-06 18:57:23', 8),
-(5795, 'asas', 12121.00, 'bd064ae7-539c-466a-8514-91f05df969ca_60766705844833', 'qwertyuiokndhjsqwertyuiokndhjsqwertyuiokndhjsqwertyuiokndhjsqwertyuiokndhjsqwertyuiokndhjsqwertyuiokndhjsqwertyuiokndhjsqwertyuiokndhjsqwertyuiokndhjsqwertyuiokndhjsqwertyuiokndhjsqwertyuiokndhjsqwertyuiokndhjsqwertyuiokndhjsqwertyuiokndhjsqwertyuiokndhjsqwertyuiokndhjsqwertyuiokndhjsqwertyuiokndhjs', '2024-04-06 19:20:31', '2024-04-06 19:20:32', 10),
-(5796, 'dsadsadawdsadsadawdsadsadawdsadsadawdsadsadawdsadsadawdsadsadawdsadsadawdsadsadawdsadsadaw', 121.00, 'b3a3b82e-ebb8-4217-9dc2-8677046cc6bc_60979872693208', 'asadasadasadasadasadasadasadasadasadasadasadasadasadasadasadasadasadasadasadasadasadasadasadasad', '2024-04-06 19:24:05', '2024-04-06 19:24:05', 10);
+(5812, 'Tivi samsung ', 2150.00, '892e4517-b8b1-4b45-a299-5a26264492c4_39093849137041', 'Smart Tivi Samsung 4K 43 Inch UA43AU7700KXXV Chính Hãng', '2024-05-13 03:33:01', '2024-05-13 03:33:22', 8),
+(5813, 'PC Gaming ', 3525.00, 'c3879893-d31f-4c55-a583-be8021862a22_39255299456125', 'PC Gaming iBUYPOWER - Intel Core i7-9700F, GTX 1660 Ti, DDR4 16 GB, SSD 240 GB', '2024-05-13 03:35:42', '2024-05-13 03:35:42', 10),
+(5814, 'Macbook Air 13.6 inch 2022 ', 12000.00, 'afd39dce-c317-4e40-a468-dd46e0a89101_39401801168916', 'Macbook Air 13.6 inch 2022 Midnight (MLY33) - M2/ 8G/ 256G -', '2024-05-13 03:38:09', '2024-05-13 03:38:09', 9),
+(5815, 'Airpods Max - Apple(IN)', 1250.00, '746a15b7-10ff-4e88-a2dd-27182b2420b3_46887637923375', 'Weight	384.8g\nBattery Life	Up to 20 hours with ANC on\nQuick Charging	Five minutes of charging provides around an hour and a half of listening time\nCharging Port	Lightning port\nDrivers	Custom drivers, material not specified\nWater Resistance	No official water resistance rating\n', '2024-05-13 07:48:15', '2024-05-13 07:48:15', 11),
+(5816, 'Logitech - Mouse Gaming G102', 59.00, '60922f2e-5ef3-4c6b-a5bf-310ae47b359c_46976285006541', 'Logitech - Mouse Gaming G102', '2024-05-13 07:49:44', '2024-05-13 07:49:44', 11),
+(5817, 'Laptop DELL Mobile Workstation Precision 7680 (71024676) ', 2580.00, '14a634d1-eea2-4c27-a836-5d25aac063bb_47153425552083', 'Laptop DELL Mobile Workstation Precision 7680 (71024676) - I9-13950HX/RAM 32GB/1TB SSD', '2024-05-13 07:52:41', '2024-05-13 07:52:41', 9),
+(5818, 'Airpods Max - Apple(IN) MINT', 1250.00, '50c3e2e9-1760-48fb-81d2-8d50100b6cf6_48071235295375', 'Weight:	                        384.8g\nBattery Life:	                Up to 20 hours with ANC on\nQuick Charging:	Five minutes of charging provides around an hour and a half of listening time\nCharging Port:  	Lightning port\nDrivers:            	        Custom drivers, material not specified\nWater Resistance:  	No official water resistance rating\n', '2024-05-13 08:07:59', '2024-05-13 08:10:24', 11),
+(5819, 'Airpods Max - Apple(IN) BLACK', 1250.00, 'c4e115b6-ee32-44b9-b136-13a121dbc791_48209660112083', 'Weight:	                        384.8g\nBattery Life:	                Up to 20 hours with ANC on\nQuick Charging:	Five minutes of charging provides around an hour and a half of listening time\nCharging Port:  	Lightning port\nDrivers:            	        Custom drivers, material not specified\nWater Resistance:  	No official water resistance rating\n', '2024-05-13 08:10:17', '2024-05-13 08:10:17', 11),
+(5820, 'Airpods Max - Apple(IN) MINT', 1250.00, '2212dce9-1dda-40b4-8500-f9ee0392feda_48282683559833', 'Weight:	                        384.8g\nBattery Life:	                Up to 20 hours with ANC on\nQuick Charging:	Five minutes of charging provides around an hour and a half of listening time\nCharging Port:  	Lightning port\nDrivers:            	        Custom drivers, material not specified\nWater Resistance:  	No official water resistance rating\n', '2024-05-13 08:11:30', '2024-05-13 08:11:37', 11),
+(5822, 'Airpods Max - Apple(IN) WHITE', 1250.00, 'ad82221c-388b-4f38-9a8b-4e749622211d_48536967571041', 'Weight:	                        384.8g\nBattery Life:	                Up to 20 hours with ANC on\nQuick Charging:	Five minutes of charging provides around an hour and a half of listening time\nCharging Port:  	Lightning port\nDrivers:            	        Custom drivers, material not specified\nWater Resistance:  	No official water resistance rating\n', '2024-05-13 08:15:44', '2024-05-13 08:15:44', 11),
+(5823, 'Magic Mouse - Apple', 800.00, '6ddf2c66-fe8b-4c03-a710-b12c1dd1b1b3_48647681483500', 'Magic Mouse - White Multi-Touch Surface', '2024-05-13 08:17:35', '2024-05-13 08:17:35', 11),
+(5824, 'Iphone 15 Pro - Titan 256gb', 3500.00, 'ff1e59e3-016f-426f-a417-cb1cc77018bb_48799464572750', 'APPLE IPHONE 15 PRO MAX 256GB HONG KONG SET DUAL SIM', '2024-05-13 08:20:07', '2024-05-13 08:20:07', 12),
+(5825, 'Iphone 15 Pro Max - Titan 256gb', 4250.00, 'eac9e328-d026-4461-8174-a3252d787a68_48912736523208', 'iPhone 15 Pro Max 256GB Natural Titanium (MU793VN/A)', '2024-05-13 08:22:00', '2024-05-13 08:22:00', 12),
+(5826, 'iPhone 14 Pro Max 1TB', 2750.00, 'bd427a85-7ffb-4a8c-962e-90762152bdba_49000304973500', 'iPhone 14 Pro Max 1TB - Genuine VN A', '2024-05-13 08:23:28', '2024-05-13 08:23:36', 12),
+(5827, 'IPhone 13 Pro Max Moss Green 128GB (Like new 99%)', 1750.00, '0fa74481-a88d-4d2a-ba79-2c7d02f88506_49089725231583', 'IPhone 13 Pro Max Moss Green 128GB (Like new 99%)', '2024-05-13 08:24:57', '2024-05-13 08:24:57', 12);
 
 -- --------------------------------------------------------
 
@@ -243,45 +244,53 @@ CREATE TABLE `product_images` (
 --
 
 INSERT INTO `product_images` (`id`, `product_id`, `image_url`) VALUES
-(641, 5782, '4ec7a56d-99ae-421f-889c-a10b7c2bbd71_56628982926083'),
-(642, 5782, '0de453af-3451-4924-93ae-e165a38b67dc_56628998284750'),
-(643, 5782, 'e508d612-e80e-4d41-b28a-308cd2d45802_56629005132541'),
-(644, 5783, '6d99dd53-bee9-4c6e-8270-1234d6ecd08e_57823638557291'),
-(645, 5783, '6b673916-25ee-4a12-b33d-f9188ebd9d64_57823657127875'),
-(646, 5784, 'c32e946b-ea68-400c-8554-105ec81d68f4_58056883063541'),
-(647, 5784, '63fc4bad-4d4f-48d7-ba2d-851d7b6df05d_58056899029625'),
-(648, 5784, 'f4154f75-06b2-4203-be91-daafe867b63a_58056904024833'),
-(649, 5785, '6b8a6c3c-012c-4887-82a4-6c48c21a2b4e_59209321641916'),
-(650, 5785, '70356340-f74b-43fb-86f1-fc797d597b03_59209343181750'),
-(651, 5786, 'd87c9a30-21fe-45d5-9250-821cb04a7d74_59221353779458'),
-(652, 5786, '484b0111-57e5-4a1f-934c-f316ffc2b34f_59221371177333'),
-(653, 5786, '0884182b-dff6-4d30-8d4a-0899859a9f5a_59221386405500'),
-(654, 5786, '4ba0032e-ed96-4f8f-9c17-814601cc210a_59221394677083'),
-(655, 5787, '43eae6e8-4424-4f01-b494-2aba0d1775ee_59241945420375'),
-(656, 5787, '1e8254b1-b301-40a7-94f1-10a60d4a261b_59241967835500'),
-(657, 5787, 'c356f2dd-1239-46eb-b7b7-daf750f69a98_59241974980583'),
-(658, 5788, '7f7371b7-d00e-43f6-900f-73bf4e141610_59260799839250'),
-(659, 5788, 'c3a05f7a-7e90-4677-81e2-0f87fca647ec_59260820342083'),
-(660, 5788, '4637fb56-17ff-4743-9bf7-70077357c674_59260831227041'),
-(661, 5789, '54816e8a-d1e8-4edb-b7f3-9f0e766d9185_59276255320625'),
-(662, 5789, 'd272f647-69d6-48a1-80e7-e55e2e300051_59276272259333'),
-(663, 5789, 'ce96846d-04cb-4fe3-b14e-ccba7ab9a70d_59276283206916'),
-(664, 5790, 'cc37b778-4631-450d-9abd-8b000b6e3f14_59313283646250'),
-(665, 5790, '7390ba31-73e2-42f5-a00c-9c67d8708b91_59313296053958'),
-(666, 5791, '65129249-e3d6-4bb5-86c4-ebafda2a1f19_59334123398583'),
-(667, 5792, '40c73d90-0004-4de2-8a50-a484efadf779_59347857905041'),
-(668, 5792, 'e795a001-ac1a-4ca6-ba73-1dbc04349fdb_59347872180625'),
-(669, 5792, 'a37f2222-35df-43ea-9546-f4c2df2cd7a4_59347879258458'),
-(670, 5792, 'd136221d-cc06-4ac9-bed5-fb7e3fa78b5d_59347885428375'),
-(671, 5793, 'ae5240bd-b4b7-410e-a1ae-16d053bfc399_59359846083500'),
-(672, 5793, '061ff0f9-0f7b-4bdc-88b4-acc2fb2eb8af_59359856533791'),
-(673, 5793, '97b9553d-f953-4fce-85f4-1904d171422c_59359872199208'),
-(674, 5794, '58b1e797-7385-4a81-bc03-52726c4bc767_59377707937625'),
-(675, 5794, '9312b5c9-f4e2-411f-b9e4-0798b36187a1_59377719215000'),
-(676, 5795, 'bd064ae7-539c-466a-8514-91f05df969ca_60766705844833'),
-(677, 5795, '5ef1e585-25c7-4070-843f-0684a6230028_60766723845750'),
-(678, 5795, 'f82590c5-f2ed-4a0c-b2d1-0dcd3424c29d_60766738665291'),
-(679, 5796, 'b3a3b82e-ebb8-4217-9dc2-8677046cc6bc_60979872693208');
+(702, 5812, '892e4517-b8b1-4b45-a299-5a26264492c4_39093849137041'),
+(703, 5812, '751e7875-b513-4ed0-bda5-d3886cde3196_39093869214333'),
+(704, 5812, '931191ee-16cf-49b5-8faa-7233f0b06e62_39093883708666'),
+(705, 5813, 'c3879893-d31f-4c55-a583-be8021862a22_39255299456125'),
+(706, 5813, '559509e4-ffaf-4bfc-b22c-3902663d7fcb_39255313495208'),
+(707, 5813, '5d7a35c7-b109-442a-851e-e1d2099c6e7a_39255321687458'),
+(708, 5814, 'afd39dce-c317-4e40-a468-dd46e0a89101_39401801168916'),
+(709, 5814, 'aabd416a-4a27-4b2a-afd9-c43f90eb807f_39401810817083'),
+(710, 5814, '6088d57a-d2af-4762-9023-e3f857872400_39401823090041'),
+(711, 5814, '3e27de74-a7a0-4018-80af-dff3632beed1_39401833841083'),
+(712, 5815, '746a15b7-10ff-4e88-a2dd-27182b2420b3_46887637923375'),
+(713, 5815, '1432e0cb-8eac-4437-af28-09d9054cfb04_46887660863625'),
+(714, 5815, '74f4b484-48de-44c3-afe4-a965515750f1_46887666112000'),
+(715, 5815, '2aabdc2b-9fdf-4333-8949-ed9c4330f635_46887674881666'),
+(716, 5816, '60922f2e-5ef3-4c6b-a5bf-310ae47b359c_46976285006541'),
+(717, 5816, '614632ee-79a0-40c1-a36d-924b6ad1a4de_46976302940875'),
+(718, 5816, 'a97744bc-4c24-4405-8541-a67ce870b8f2_46976317082416'),
+(719, 5817, '14a634d1-eea2-4c27-a836-5d25aac063bb_47153425552083'),
+(720, 5817, '8d580045-c6fc-409d-bb50-8a6ae5bd7e69_47153443277625'),
+(721, 5817, '0ce16861-3141-46ea-88c4-90fcd03b22b2_47153452715625'),
+(722, 5817, '12de86d1-d09d-4905-9554-ff166a970357_47153457136375'),
+(723, 5818, '50c3e2e9-1760-48fb-81d2-8d50100b6cf6_48071235295375'),
+(724, 5818, 'ec1869fb-9417-4e30-9d72-79da9d5a3e69_48071263122041'),
+(725, 5818, '968404b1-148f-4d49-ad4e-17cc0d81d593_48071274755875'),
+(726, 5818, '8671c088-53d2-4bf6-9412-c38ce37a70c1_48071279281291'),
+(727, 5819, 'c4e115b6-ee32-44b9-b136-13a121dbc791_48209660112083'),
+(728, 5819, '24beb5b7-2825-4a56-aa93-0a61e91f43fd_48209683655541'),
+(729, 5819, 'f0fdd4bd-b213-456b-92a0-28ea3027cc93_48209709325791'),
+(730, 5820, '2212dce9-1dda-40b4-8500-f9ee0392feda_48282683559833'),
+(731, 5820, '9084c3d3-9fd1-4efd-9322-38ee897daa57_48282704520875'),
+(732, 5820, 'b9229307-1a54-44c2-9f90-ccd4b09f228c_48282713038875'),
+(741, 5822, 'ad82221c-388b-4f38-9a8b-4e749622211d_48536967571041'),
+(742, 5822, 'ab0ce857-aeea-4a75-8726-5ecb1db4771d_48536987376666'),
+(743, 5822, '6d1116dc-9067-405b-8c70-60121ea954c8_48536992530208'),
+(744, 5823, '6ddf2c66-fe8b-4c03-a710-b12c1dd1b1b3_48647681483500'),
+(745, 5823, 'c7109de1-f38b-423a-9ed5-58cf7d057edd_48647724491916'),
+(746, 5823, '2b5b172e-3e15-4acc-95df-8e8eaddf8db1_48647736900500'),
+(747, 5824, 'ff1e59e3-016f-426f-a417-cb1cc77018bb_48799464572750'),
+(748, 5825, 'eac9e328-d026-4461-8174-a3252d787a68_48912736523208'),
+(749, 5825, '5b67f65e-1eb8-4234-9b75-f966c4cd9658_48912751393250'),
+(750, 5825, 'ec2a1111-9b3c-476c-93bb-9f4422586e18_48912757264708'),
+(751, 5826, 'bd427a85-7ffb-4a8c-962e-90762152bdba_49000304973500'),
+(752, 5826, '0f149e4b-8430-4ac9-9f0a-17be36d6f7db_49000314623375'),
+(753, 5826, 'e66def25-c8d3-41bb-b10d-1e242ec42d0e_49000319984958'),
+(754, 5827, '0fa74481-a88d-4d2a-ba79-2c7d02f88506_49089725231583'),
+(755, 5827, '56fbe133-51d1-4077-998f-7a232530204b_49089736173291'),
+(756, 5827, '4d95f101-dd24-4739-a15d-5efdc2142b0b_49089740267208');
 
 -- --------------------------------------------------------
 
@@ -341,21 +350,12 @@ CREATE TABLE `tokens` (
 --
 
 INSERT INTO `tokens` (`id`, `token`, `token_type`, `expiration_date`, `revoked`, `expired`, `user_id`, `is_mobile`, `refresh_token`, `refresh_expiration_date`) VALUES
-(7, 'eyJhbGciOiJIUzI1NiJ9.eyJwaG9uZU51bWJlciI6IjMzNDQ1NTY2IiwidXNlcklkIjo1LCJzdWIiOiIzMzQ0NTU2NiIsImV4cCI6MTcwNDAxODIzMX0.mA1bofNECAkMWbZqK0h_WJgVqlTOjfd5XoAiDAqAy7w', 'Bearer', '2023-12-31 10:23:51', 0, 0, 5, 1, '', NULL),
-(16, 'eyJhbGciOiJIUzI1NiJ9.eyJwaG9uZU51bWJlciI6IjExMjIzMzQ0IiwidXNlcklkIjozLCJzdWIiOiIxMTIyMzM0NCIsImV4cCI6MTcwNDI1NjM2MH0.U6A4ed5dxRAzMxwHluiR0-_Rxm0ngXfZ1RN-VaW_OpY', 'Bearer', '2024-01-03 04:32:40', 0, 0, 3, 0, '8caf32df-69e8-4489-9716-4e2a2944a1a8', '2024-02-02 04:32:40'),
-(29, 'eyJhbGciOiJIUzI1NiJ9.eyJwaG9uZU51bWJlciI6IjA5NjQ4OTYyMzkiLCJ1c2VySWQiOjgsInN1YiI6IjA5NjQ4OTYyMzkiLCJleHAiOjE3MDQ3MDc1MTR9.B3iHckT44zN8zG3clXsURaemqWvfz7HJkR-e9b9VCo0', 'Bearer', '2024-01-08 09:51:55', 0, 0, 8, 0, '9cd17548-6634-43c4-a0a6-376266413e68', '2024-02-07 09:51:55'),
-(32, 'eyJhbGciOiJIUzI1NiJ9.eyJwaG9uZU51bWJlciI6IjA5NjQ4OTYyMzkiLCJ1c2VySWQiOjgsInN1YiI6IjA5NjQ4OTYyMzkiLCJleHAiOjE3MDQ3MDc2MTV9.CkOUQe1k7XFjLfiMJgB7VLvVnZnEfkASP0cc7eVAJtQ', 'Bearer', '2024-01-08 09:53:35', 0, 0, 8, 0, '94ac5e7b-abaa-40d7-90df-0a044b7c705c', '2024-02-07 09:53:35'),
-(34, 'eyJhbGciOiJIUzI1NiJ9.eyJwaG9uZU51bWJlciI6IjA5NjQ4OTYyMzkiLCJ1c2VySWQiOjgsInN1YiI6IjA5NjQ4OTYyMzkiLCJleHAiOjE3MDQ3MDc4NzN9.NzGHRwdw9f1mK6OTe4a8Jsg6xdedeqoAQRb1FZO19Vo', 'Bearer', '2024-01-08 09:57:53', 0, 0, 8, 0, 'c9544702-4ea7-403a-9914-4159f952287a', '2024-02-07 09:57:53'),
-(36, 'eyJhbGciOiJIUzI1NiJ9.eyJwaG9uZU51bWJlciI6IjExMjIzMzQ0IiwidXNlcklkIjozLCJzdWIiOiIxMTIyMzM0NCIsImV4cCI6MTcxNDU3NzAzOX0.kUc3YxjaqapBxQPkkIypt1Gf7bXPtdSzDxgXm8eChAk', 'Bearer', '2024-05-01 15:23:59', 0, 0, 3, 0, '5f2b69da-c916-4996-8076-d4ccce4d4e47', '2024-05-31 15:23:59'),
-(41, 'eyJhbGciOiJIUzI1NiJ9.eyJwaG9uZU51bWJlciI6IjExMjIzMzQ0IiwidXNlcklkIjozLCJzdWIiOiIxMTIyMzM0NCIsImV4cCI6MTcxNDc5MjMzNn0.dH98q5AEWZ7O1Q1SwyJuoh0a_j8WUBODNjsx8YZJLwY', 'Bearer', '2024-05-04 03:12:17', 0, 0, 3, 0, 'fe8496c5-ac15-4e36-ae8c-b073d12440b7', '2024-06-03 03:12:17'),
-(45, 'eyJhbGciOiJIUzI1NiJ9.eyJwaG9uZU51bWJlciI6IjEyMzQ1NiIsInVzZXJJZCI6MTAsInN1YiI6IjEyMzQ1NiIsImV4cCI6MTcxNTAxODk1M30.bnhdQuuxZiaDz-GgRmP5lOxNAZRPamserYrd8FDwEm4', 'Bearer', '2024-05-06 18:09:14', 0, 0, 10, 0, '541dcacc-4b2d-4866-8e82-da92e365d4df', '2024-06-05 18:09:14'),
-(47, 'eyJhbGciOiJIUzI1NiJ9.eyJwaG9uZU51bWJlciI6IjEyMzQ1NiIsInVzZXJJZCI6MTAsInN1YiI6IjEyMzQ1NiIsImV4cCI6MTcxNTAyMDQ3MX0.WTFq6X_oY6neEH0CKmNtnYaSpVrVvZk6mQJpFYNz-iY', 'Bearer', '2024-05-06 18:34:31', 0, 0, 10, 0, 'c7f487d3-99f8-4b04-a2e1-679915d186de', '2024-06-05 18:34:31'),
-(49, 'eyJhbGciOiJIUzI1NiJ9.eyJwaG9uZU51bWJlciI6IjEyMzQ1NiIsInVzZXJJZCI6MTAsInN1YiI6IjEyMzQ1NiIsImV4cCI6MTcxNTAyMTY1MX0.E1pWVIaYuoJmLqOlrbPC5aX-gKXzX0kRtny-7kovQt8', 'Bearer', '2024-05-06 18:54:12', 0, 0, 10, 0, '5816f84f-f9dc-4fad-ae34-e1d22ca2a34d', '2024-06-05 18:54:12'),
-(50, 'eyJhbGciOiJIUzI1NiJ9.eyJwaG9uZU51bWJlciI6IjExMTExMSIsInVzZXJJZCI6OSwic3ViIjoiMTExMTExIiwiZXhwIjoxNzE1MDI4MjM1fQ.zWLrf--z9aMxH_qQ1oft4hSvCEOngcoMT4XsRCqV5F0', 'Bearer', '2024-05-06 20:43:55', 0, 0, 9, 0, '1affde0f-58a2-41f4-975a-4134d9528726', '2024-06-05 20:43:55'),
-(58, 'eyJhbGciOiJIUzI1NiJ9.eyJwaG9uZU51bWJlciI6IjMzNDQ1NTY2IiwidXNlcklkIjo1LCJzdWIiOiIzMzQ0NTU2NiIsImV4cCI6MTcxNTAyODMxOH0.sbt0INwqRQfHoe0NLa_dphAN9yZLWvM11fRt02lzFYQ', 'Bearer', '2024-05-06 20:45:19', 0, 0, 5, 0, '9f30f775-7d1e-46d0-a12b-0ee02f5735a2', '2024-06-05 20:45:19'),
-(59, 'eyJhbGciOiJIUzI1NiJ9.eyJwaG9uZU51bWJlciI6IjMzNDQ1NTY2IiwidXNlcklkIjo1LCJzdWIiOiIzMzQ0NTU2NiIsImV4cCI6MTcxNTAyODM3MX0.YnZ0zoZunEyvRTIZ4GGbX8mKTwcFCpmfjt-oFFO5lFU', 'Bearer', '2024-05-06 20:46:11', 0, 0, 5, 0, 'aa29f813-ba44-4d2c-8c10-f2b9d0fba7aa', '2024-06-05 20:46:11'),
-(60, 'eyJhbGciOiJIUzI1NiJ9.eyJwaG9uZU51bWJlciI6IjExMTExMSIsInVzZXJJZCI6OSwic3ViIjoiMTExMTExIiwiZXhwIjoxNzE1MDI4NDM2fQ.SZ3TulK5LLDHTRK5waBOACTPBU-9bK31AND52hVJYFU', 'Bearer', '2024-05-06 20:47:17', 0, 0, 9, 0, '82c7965a-73d6-4613-982d-b894bf97bd90', '2024-06-05 20:47:17'),
-(61, 'eyJhbGciOiJIUzI1NiJ9.eyJwaG9uZU51bWJlciI6IjExMTExMSIsInVzZXJJZCI6OSwic3ViIjoiMTExMTExIiwiZXhwIjoxNzE1MDI5ODY1fQ.fz9Y2l0B9d2or5O-BhoSREiYzFhBQIjeqX4A4N1arKY', 'Bearer', '2024-05-06 21:11:05', 0, 0, 9, 0, 'c09300a9-7992-416f-8cb8-6fb1d5d12014', '2024-06-05 21:11:05');
+(78, 'eyJhbGciOiJIUzI1NiJ9.eyJwaG9uZU51bWJlciI6IjEyMzQ1Njc4OTAiLCJ1c2VySWQiOjEzLCJzdWIiOiIxMjM0NTY3ODkwIiwiZXhwIjoxNzE4MTEzMTkxfQ.D2NpfOoLbk2U1LrN6cef7PcCffpVS9OUdHZQVgCGxZA', 'Bearer', '2024-06-11 13:39:52', 0, 0, 13, 0, 'a0a7dc39-c8ab-4e6c-8405-506d4471b6d3', '2024-07-11 13:39:52'),
+(80, 'eyJhbGciOiJIUzI1NiJ9.eyJwaG9uZU51bWJlciI6IjEyMzQ1Njc4OTAiLCJ1c2VySWQiOjEzLCJzdWIiOiIxMjM0NTY3ODkwIiwiZXhwIjoxNzE4MTczNTA1fQ.r1s0Pneka491Eu83ogyFWDWFzx4MpdNgRjLPl1vYKGk', 'Bearer', '2024-06-12 06:25:06', 0, 0, 13, 0, '05a1c26d-40af-4f45-bfa4-e08f8a46ab48', '2024-07-12 06:25:06'),
+(81, 'eyJhbGciOiJIUzI1NiJ9.eyJwaG9uZU51bWJlciI6IjEyMzQ1Njc4OTAiLCJ1c2VySWQiOjEzLCJzdWIiOiIxMjM0NTY3ODkwIiwiZXhwIjoxNzE4MTczNzU0fQ.84NJ3gtXgOw_37iCaI9MtkQa_xlhKCyMnPWIWSQARhY', 'Bearer', '2024-06-12 06:29:14', 0, 0, 13, 0, '0f2cfffb-eddb-4d4e-a80d-a34db99ee41a', '2024-07-12 06:29:14'),
+(83, 'eyJhbGciOiJIUzI1NiJ9.eyJwaG9uZU51bWJlciI6IjEyMzQ1Njc4OTEwIiwidXNlcklkIjoxMiwic3ViIjoiMTIzNDU2Nzg5MTAiLCJleHAiOjE3MTgxNzcyODN9.KMBZjxVeNKqRS28Z3sHyWeqd_0fq0pdtUJIUjYh3muc', 'Bearer', '2024-06-12 07:28:03', 0, 0, 12, 0, '19b17dc3-371f-41fa-aa86-9ffd841fd01c', '2024-07-12 07:28:03'),
+(84, 'eyJhbGciOiJIUzI1NiJ9.eyJwaG9uZU51bWJlciI6IjEyMzQ1Njc4OTEwIiwidXNlcklkIjoxMiwic3ViIjoiMTIzNDU2Nzg5MTAiLCJleHAiOjE3MTgxNzk2MTd9.wAYmI8oJLKVGAMOjyBGfxDWtNoJ48xRlJSqR56Pm9gw', 'Bearer', '2024-06-12 08:06:58', 0, 0, 12, 0, 'efe62c9f-2e44-49c7-a8b4-ab90ed1c0c83', '2024-07-12 08:06:58'),
+(85, 'eyJhbGciOiJIUzI1NiJ9.eyJwaG9uZU51bWJlciI6IjEyMzQ1Njc4OTEwIiwidXNlcklkIjoxMiwic3ViIjoiMTIzNDU2Nzg5MTAiLCJleHAiOjE3MTgxODA5Mzh9.TsCrl-JXi1sPHgtm4DvxSz0me3YdO1uNh3j8W4tBGds', 'Bearer', '2024-06-12 08:28:58', 0, 0, 12, 0, 'dc002c6c-6e88-49e1-bad5-f24cb12d2f9c', '2024-07-12 08:28:58');
 
 -- --------------------------------------------------------
 
@@ -383,13 +383,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `fullname`, `phone_number`, `address`, `password`, `created_at`, `updated_at`, `is_active`, `date_of_birth`, `facebook_account_id`, `google_account_id`, `role_id`) VALUES
-(2, 'Nguyễn Văn A', '012456878', 'Nhà a ngõ b', '$2a$10$WdSf5UuyxQMAHcO502qXredzcc8OZQo4XQZNp3UxeT6/bKbuJx/6y', '2023-08-03 05:36:11', '2023-08-03 05:36:11', 1, '1999-10-25', 0, 0, 2),
-(3, 'Tài khoản admin 1', '11223344', 'Đây là admin nhé', '$2a$10$JFQT3HeFUKDl7c/l.iNFAeybFr7Wi3krwgVVR7ieif.2De5p9LGAG', '2023-08-06 00:34:35', '2023-08-06 00:34:35', 1, '1993-10-25', 0, 0, 2),
-(5, 'Nguyễn Văn test 11', '33445566', 'Nhà a ngõ b 11', '$2a$10$e95NOMrOFFpfhWibOpAw/uJrqfsBuJ9O3xNgZAP6vnHTh5QHvgliu', '2023-08-08 03:02:48', '2023-11-16 01:05:34', 1, '2000-10-25', 2, 3, 1),
-(7, 'Nguyen Van Y', '123456789', 'Đây là user', '$2a$10$oZwu2RA2iiNVIaQZgdi7bueKc5YNWr39yu.gXdsavBzo5AOb1kP5e', '2023-11-16 00:52:29', '2023-11-16 00:52:29', 1, '2000-10-25', 0, 0, 1),
-(8, 'Nguyen Duc Hoang-user', '0964896239', 'Bach mai, hanoi, vietnam', '$2a$10$cGkVz4/65tDn2M33Gx3GYOC3DKrRni4SK/m1So0rpIXQFiG/ltM5G', '2023-12-09 08:27:38', '2023-12-09 08:27:38', 1, '1979-10-25', 0, 0, 1),
-(9, 'Bùi Thanh Sơn', '111111', '926 nguyễn văn cừ', '$2a$10$lF5t3N4mBq32bDa/F5F95e.o9bAasCVlS1K/EylrL8xZWdtKhzfhC', '2024-04-06 17:49:30', '2024-04-06 17:49:30', 1, '2003-08-27', 0, 0, 1),
-(10, 'Bui Thanh Son', '123456', 'Đây là user', '$2a$10$WtKqqMb9AdRfbHvNiFKW1ezITL7srCiE6oWxZCEZ82TfsLBcG5Z2e', '2024-04-06 18:02:59', '2024-04-06 18:02:59', 1, '2000-10-25', 0, 0, 2);
+(12, 'admin', '12345678910', 'asa', '$2a$10$8Qz5hC5buxb83mXl6/uKjuODomZ.Kc5V0do5kldTLteStNxzanqVq', '2024-05-11 13:27:15', '2024-05-11 13:27:15', 1, '2000-01-02', 0, 0, 2),
+(13, 'users', '1234567890', 'ủe', '$2a$10$sRb7AApckTuuCyyRYySrluq0Ubo2vp66JW..cdx8IdY8DNXRPEMoi', '2024-05-11 13:40:52', '2024-05-11 13:40:52', 1, '2000-01-12', 0, 0, 1);
 
 --
 -- Indexes for dumped tables
@@ -505,7 +500,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `comments`
@@ -535,25 +530,25 @@ ALTER TABLE `favorites`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5797;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5828;
 
 --
 -- AUTO_INCREMENT for table `product_images`
 --
 ALTER TABLE `product_images`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=680;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=757;
 
 --
 -- AUTO_INCREMENT for table `social_accounts`
@@ -565,13 +560,13 @@ ALTER TABLE `social_accounts`
 -- AUTO_INCREMENT for table `tokens`
 --
 ALTER TABLE `tokens`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Constraints for dumped tables
