@@ -23,7 +23,7 @@ public class TestLogin {
 		WebDriverManager.edgedriver().setup();
 
 		driver = new EdgeDriver();
-		driver.get("http://localhost:4200/login");
+		driver.get("http://localhost:4200");
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); // Implicit wait
 		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30)); // Page load timeout
 		driver.manage().timeouts().setScriptTimeout(Duration.ofSeconds(3000)); // Script timeout
@@ -33,7 +33,7 @@ public class TestLogin {
     @Test
     public void TestCase1() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-
+		driver.findElement(By.id("btn-login")).click();
 		//thao tác đăng nhập vào admin
 		driver.findElement(By.name("phone")).sendKeys("0123456789");
 		Thread.sleep(500);
@@ -76,6 +76,15 @@ public class TestLogin {
 		//WebElement fileInput = driver.findElement(By.id("images"));
 		// chưa accept được path ảnh
 		//fileInput.sendKeys("C:\Users\Admin\OneDrive\Hình ảnh\received_5645669542185850.jpg");
+
+
+
+		//thao tác quản lý user
+		driver.findElement(By.id("test_user")).click();
+		Thread.sleep(1000);
+		driver.findElement(new By.ByClassName("btn-danger")).click();
+		Thread.sleep(1000);
+
 	}
 
 	//Sign in for user

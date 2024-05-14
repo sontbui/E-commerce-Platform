@@ -15,14 +15,14 @@
                 <ul class="navbar-nav">
 
                     <li class="nav-item">
-                        <a class="nav-link" 
+                        <a class="nav-link"
                           [ngClass]="{ 'active': activeNavItem === 0 }"
                           (click)="setActiveNavItem(0)"
                           routerLink="/">Home</a>
                     </li>
-  
+
                     <li class="nav-item">
-                        <a class="nav-link" 
+                        <a class="nav-link"
                             [ngClass]="{ 'active': activeNavItem === 1 }"
                             (click)="setActiveNavItem(1)"
                             routerLink="/orders">
@@ -32,10 +32,10 @@
                         </a>
                     </li>
 
-                    <li class="nav-item">
+                    <li class="nav-item" >
                         @if(userResponse === null) {
                           <ng-container>
-                            <a class="nav-link" routerLink="/login">Login</a>
+                            <a class="nav-link" id="btn-login" routerLink="/login">Login</a>
                           </ng-container>
                         } @else {
                           <ng-container>
@@ -46,7 +46,7 @@
                               [placement]="'bottom'"
                             >
                               <a
-                                class="nav-link"                              
+                                class="nav-link"
                                 [ngbPopover]="popoverContent"
                                 (click)="togglePopover($event)"
                               >
@@ -54,19 +54,19 @@
                               </a>
                               <ng-template #popoverContent>
                                 <div class="popover-list">
-                                  <a class="popover-item" 
+                                  <a class="popover-item"
                                       (click)="handleItemClick(0)">Account</a>
-                                  <!-- <a class="popover-item" 
+                                  <!-- <a class="popover-item"
                                       (click)="handleItemClick(1)">Ordered</a> -->
-                                  <a class="popover-item" 
+                                  <a class="popover-item"
                                       (click)="handleItemClick(2)">Logout</a>
                                 </div>
                               </ng-template>
                             </ng-container>
                           </ng-container>
-                         
-                        }                                                
-                      </li>                                                                
+
+                        }
+                      </li>
                 </ul>
             </div>
         </div>
