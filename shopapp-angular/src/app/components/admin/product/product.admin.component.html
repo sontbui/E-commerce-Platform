@@ -6,15 +6,15 @@
         <input type="text" class="form-control search-input" placeholder="Tìm sản phẩm" [(ngModel)]="keyword">
       </div>
       <div class="col-md-4">
-        <button class="btn btn-primary" (click)="searchProducts()">Find</button>
+        <button class="btn btn-primary" id="btn-find" (click)="searchProducts()">Find</button>
       </div>
     </div>
     <div class="row">
       <div class="col-md-8 ">
-        <button class="btn btn-success" (click)="insertProduct()">Add new product</button>
-      </div>      
+        <button class="btn btn-success" id="btn-add" (click)="insertProduct()">Add new product</button>
+      </div>
     </div>
-    
+
     <table class="table">
       <thead class="table-light">
         <tr>
@@ -26,31 +26,31 @@
           <th>Actions</th>
         </tr>
       </thead>
-      <tbody>        
+      <tbody>
         @for(product of products; track product.id) {
           <tr>
             <td>{{ product.id }}</td>
             <td>{{ product.name }}</td>
             <td>{{ product.price }}</td>
             <td>
-              <img src="{{ product.url }}" 
+              <img src="{{ product.url }}"
                 class="rounded-square" alt="Thumbnail"
                 width="100" height="100">
             </td>
             <td>{{ product.description }}</td>
             <td>
               <div style="display: flex; gap: 10px;">
-                <button class="btn btn-primary" 
+                <button class="btn btn-primary"
                     (click)="updateProduct(product.id)">
                   Update
                 </button>
-                <button class="btn btn-danger" 
+                <button class="btn btn-danger"
                   (click)="deleteProduct(product)">Delete
-                </button>            
+                </button>
                 </div>
-            </td>          
+            </td>
           </tr>
-        }        
+        }
       </tbody>
     </table>
     <div class="d-flex justify-content-center">
@@ -65,14 +65,14 @@
                 <i class="fa fa-chevron-left"></i>
               </a>
             </li>
-          }          
+          }
           @for(page of visiblePages; track page) {
             <ng-container>
               <li class="page-item" [ngClass]="{'active': page === currentPage + 1}">
                 <a class="page-link" (click)="onPageChange(page - 1)">{{ page }}</a>
               </li>
             </ng-container>
-          }          
+          }
           @if(currentPage < totalPages - 1)   {
             <li class="page-item">
               <a class="page-link" (click)="onPageChange(currentPage + 1)">
@@ -82,7 +82,7 @@
             <li class="page-item" >
               <a class="page-link" (click)="onPageChange(totalPages - 1)">Last</a>
             </li>
-          }          
+          }
         </ul>
       </nav>
     </div>
