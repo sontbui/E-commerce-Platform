@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
@@ -20,9 +20,9 @@ public class TestLogin {
 
 	@BeforeTest
 	public void init(){
-		WebDriverManager.edgedriver().setup();
+		WebDriverManager.chromedriver().setup();
 
-		driver = new EdgeDriver();
+		driver = new ChromeDriver();
 		driver.get("http://localhost:4200");
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); // Implicit wait
 		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30)); // Page load timeout
@@ -33,7 +33,9 @@ public class TestLogin {
     @Test
     public void TestCase1() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
 		driver.findElement(By.id("btn-login")).click();
+
 		//thao tác đăng nhập vào admin
 		driver.findElement(By.name("phone")).sendKeys("0123456789");
 		Thread.sleep(500);
