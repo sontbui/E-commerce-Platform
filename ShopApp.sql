@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql8-container
--- Generation Time: May 13, 2024 at 08:31 AM
+-- Generation Time: May 16, 2024 at 05:53 PM
 -- Server version: 8.2.0
 -- PHP Version: 8.2.18
 
@@ -38,8 +38,10 @@ CREATE TABLE `categories` (
 
 INSERT INTO `categories` (`id`, `name`) VALUES
 (11, 'Accessories'),
+(13, 'Chip'),
 (12, 'Iphone'),
 (9, 'Laptop'),
+(15, 'Mouse'),
 (10, 'PC'),
 (8, 'TV');
 
@@ -159,10 +161,17 @@ CREATE TABLE `orders` (
 
 INSERT INTO `orders` (`id`, `user_id`, `fullname`, `email`, `phone_number`, `address`, `note`, `order_date`, `status`, `total_money`, `shipping_method`, `shipping_address`, `shipping_date`, `tracking_number`, `payment_method`, `active`, `coupon_id`) VALUES
 (48, 13, 'buithanh son', 'sonbui@gmail.com', '0363079576', 'dadasda', '', '2024-05-13 00:00:00', 'pending', 1827.5, 'express', NULL, '2024-05-13', NULL, 'cod', 0, NULL),
-(49, 13, 'Bùi Thanh Sơn', 'sonbuithanh306@gmail.com', '0363079576', '926 nguyễn văn cừ', '', NULL, 'pending', 1827.5, 'express', NULL, NULL, NULL, 'cod', 1, NULL),
+(49, 13, 'Bùi Thanh Sơn', 'sonbuithanh306@gmail.com', '0363079576', '926 nguyễn văn cừ', '', NULL, 'processing', 1827.5, 'express', NULL, NULL, NULL, 'cod', 0, NULL),
 (50, 13, 'Bùi Thanh Sơn', 'sonbuithanh306@gmail.com', '0363079576', '926 nguyễn văn cừ', '', '2024-05-13 00:00:00', 'pending', 0, 'express', NULL, '2024-05-13', NULL, 'cod', 0, NULL),
 (51, 13, 'Bùi Thanh Sơn', 'sonbuithanh306@gmail.com', '0363079576', '926 nguyễn văn cừ', '', '2024-05-13 00:00:00', 'pending', 0, 'express', NULL, '2024-05-13', NULL, 'cod', 0, NULL),
-(52, 13, 'Bùi Thanh Sơn', 'sonbuithanh306@gmail.com', '0363079576', '926 nguyễn văn cừ', '', '2024-05-13 00:00:00', 'pending', 0, 'express', NULL, '2024-05-13', NULL, 'cod', 0, NULL);
+(52, 13, 'Bùi Thanh Sơn', 'sonbuithanh306@gmail.com', '0363079576', '926 nguyễn văn cừ', '', '2024-05-13 00:00:00', 'pending', 0, 'express', NULL, '2024-05-13', NULL, 'cod', 0, NULL),
+(53, 16, 'Luu Thung', 'thuan@gmail.com', '0963101750', 'HCM city', '', NULL, 'shipped', 5391.25, 'express', NULL, NULL, NULL, 'other', 0, NULL),
+(54, 14, 'Luu Thung', 'thuan@gmail.com', '0963101750', 'HCM city', '', NULL, 'shipped', 2042.5, 'express', NULL, NULL, NULL, 'cod', 0, NULL),
+(55, 16, 'Luu Thung', 'thuan@gmail.com', '0963101750', 'HCM city', 'hhh', NULL, 'shipped', 3348.75, 'express', NULL, NULL, NULL, 'cod', 0, NULL),
+(56, 16, 'Luu Thung', 'thuan@gmail.com', '0963101750', 'HCM city', 'hhh', '2024-05-17 00:00:00', 'pending', 3348.75, 'express', NULL, '2024-05-17', NULL, 'cod', 0, NULL),
+(57, 14, 'Luu Thung', 'thuan@gmail.com', '0963101750', 'HCM city', 'hhh', NULL, 'shipped', 2042.5, 'express', NULL, NULL, NULL, 'cod', 0, NULL),
+(58, 14, 'Luu Thung', 'thuan@gmail.com', '0963101750', 'HCM city', 'hhh', NULL, 'shipped', 11400, 'express', NULL, NULL, NULL, 'cod', 0, NULL),
+(59, 16, 'Luu Thung', 'thuan@gmail.com', '12312312312', 'HCMHCM', '', NULL, 'shipped', 3348.75, 'express', NULL, NULL, NULL, 'cod', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -187,7 +196,15 @@ CREATE TABLE `order_details` (
 
 INSERT INTO `order_details` (`id`, `order_id`, `product_id`, `price`, `number_of_products`, `total_money`, `color`, `coupon_id`) VALUES
 (82, 48, 5812, 2150.00, 1, NULL, NULL, NULL),
-(83, 49, 5812, 2150.00, 1, NULL, NULL, NULL);
+(83, 49, 5812, 2150.00, 1, NULL, NULL, NULL),
+(84, 53, 5813, 3525.00, 1, NULL, NULL, NULL),
+(85, 53, 5812, 2150.00, 1, NULL, NULL, NULL),
+(86, 54, 5812, 2150.00, 1, NULL, NULL, NULL),
+(87, 55, 5813, 3525.00, 1, NULL, NULL, NULL),
+(88, 56, 5813, 3525.00, 1, NULL, NULL, NULL),
+(89, 57, 5812, 2150.00, 1, NULL, NULL, NULL),
+(90, 58, 5814, 12000.00, 1, NULL, NULL, NULL),
+(91, 59, 5813, 3525.00, 1, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -350,12 +367,15 @@ CREATE TABLE `tokens` (
 --
 
 INSERT INTO `tokens` (`id`, `token`, `token_type`, `expiration_date`, `revoked`, `expired`, `user_id`, `is_mobile`, `refresh_token`, `refresh_expiration_date`) VALUES
-(78, 'eyJhbGciOiJIUzI1NiJ9.eyJwaG9uZU51bWJlciI6IjEyMzQ1Njc4OTAiLCJ1c2VySWQiOjEzLCJzdWIiOiIxMjM0NTY3ODkwIiwiZXhwIjoxNzE4MTEzMTkxfQ.D2NpfOoLbk2U1LrN6cef7PcCffpVS9OUdHZQVgCGxZA', 'Bearer', '2024-06-11 13:39:52', 0, 0, 13, 0, 'a0a7dc39-c8ab-4e6c-8405-506d4471b6d3', '2024-07-11 13:39:52'),
-(80, 'eyJhbGciOiJIUzI1NiJ9.eyJwaG9uZU51bWJlciI6IjEyMzQ1Njc4OTAiLCJ1c2VySWQiOjEzLCJzdWIiOiIxMjM0NTY3ODkwIiwiZXhwIjoxNzE4MTczNTA1fQ.r1s0Pneka491Eu83ogyFWDWFzx4MpdNgRjLPl1vYKGk', 'Bearer', '2024-06-12 06:25:06', 0, 0, 13, 0, '05a1c26d-40af-4f45-bfa4-e08f8a46ab48', '2024-07-12 06:25:06'),
 (81, 'eyJhbGciOiJIUzI1NiJ9.eyJwaG9uZU51bWJlciI6IjEyMzQ1Njc4OTAiLCJ1c2VySWQiOjEzLCJzdWIiOiIxMjM0NTY3ODkwIiwiZXhwIjoxNzE4MTczNzU0fQ.84NJ3gtXgOw_37iCaI9MtkQa_xlhKCyMnPWIWSQARhY', 'Bearer', '2024-06-12 06:29:14', 0, 0, 13, 0, '0f2cfffb-eddb-4d4e-a80d-a34db99ee41a', '2024-07-12 06:29:14'),
 (83, 'eyJhbGciOiJIUzI1NiJ9.eyJwaG9uZU51bWJlciI6IjEyMzQ1Njc4OTEwIiwidXNlcklkIjoxMiwic3ViIjoiMTIzNDU2Nzg5MTAiLCJleHAiOjE3MTgxNzcyODN9.KMBZjxVeNKqRS28Z3sHyWeqd_0fq0pdtUJIUjYh3muc', 'Bearer', '2024-06-12 07:28:03', 0, 0, 12, 0, '19b17dc3-371f-41fa-aa86-9ffd841fd01c', '2024-07-12 07:28:03'),
 (84, 'eyJhbGciOiJIUzI1NiJ9.eyJwaG9uZU51bWJlciI6IjEyMzQ1Njc4OTEwIiwidXNlcklkIjoxMiwic3ViIjoiMTIzNDU2Nzg5MTAiLCJleHAiOjE3MTgxNzk2MTd9.wAYmI8oJLKVGAMOjyBGfxDWtNoJ48xRlJSqR56Pm9gw', 'Bearer', '2024-06-12 08:06:58', 0, 0, 12, 0, 'efe62c9f-2e44-49c7-a8b4-ab90ed1c0c83', '2024-07-12 08:06:58'),
-(85, 'eyJhbGciOiJIUzI1NiJ9.eyJwaG9uZU51bWJlciI6IjEyMzQ1Njc4OTEwIiwidXNlcklkIjoxMiwic3ViIjoiMTIzNDU2Nzg5MTAiLCJleHAiOjE3MTgxODA5Mzh9.TsCrl-JXi1sPHgtm4DvxSz0me3YdO1uNh3j8W4tBGds', 'Bearer', '2024-06-12 08:28:58', 0, 0, 12, 0, 'dc002c6c-6e88-49e1-bad5-f24cb12d2f9c', '2024-07-12 08:28:58');
+(85, 'eyJhbGciOiJIUzI1NiJ9.eyJwaG9uZU51bWJlciI6IjEyMzQ1Njc4OTEwIiwidXNlcklkIjoxMiwic3ViIjoiMTIzNDU2Nzg5MTAiLCJleHAiOjE3MTgxODA5Mzh9.TsCrl-JXi1sPHgtm4DvxSz0me3YdO1uNh3j8W4tBGds', 'Bearer', '2024-06-12 08:28:58', 0, 0, 12, 0, 'dc002c6c-6e88-49e1-bad5-f24cb12d2f9c', '2024-07-12 08:28:58'),
+(142, 'eyJhbGciOiJIUzI1NiJ9.eyJwaG9uZU51bWJlciI6IjEyMzQ1Njc4OTAiLCJ1c2VySWQiOjEzLCJzdWIiOiIxMjM0NTY3ODkwIiwiZXhwIjoxNzE4MzAyMzQ3fQ.f5if0WUx6USr6kmoGOHO39J1HEZ2TlNS_9Eg5RRGp-0', 'Bearer', '2024-06-13 18:12:28', 0, 0, 13, 0, '6e89796b-ea31-419a-8d44-b6b453f7c99d', '2024-07-13 18:12:28'),
+(143, 'eyJhbGciOiJIUzI1NiJ9.eyJwaG9uZU51bWJlciI6IjEyMzQ1Njc4OTAiLCJ1c2VySWQiOjEzLCJzdWIiOiIxMjM0NTY3ODkwIiwiZXhwIjoxNzE4MzAyNDA1fQ.0tG51a3Alp_Az3YZ68TKWiqqRHR-GGA13Mi8KTvsBSw', 'Bearer', '2024-06-13 18:13:25', 0, 0, 13, 0, '4381116a-9303-448e-ae4b-084f50f8e63f', '2024-07-13 18:13:25'),
+(258, 'eyJhbGciOiJIUzI1NiJ9.eyJwaG9uZU51bWJlciI6IjAxMjM0NTY3ODkiLCJ1c2VySWQiOjE0LCJzdWIiOiIwMTIzNDU2Nzg5IiwiZXhwIjoxNzE4NDczNjAwfQ.EsuDKU3eEd1KBGlkge00Behfaknnw0kk9tR0u5sHAZQ', 'Bearer', '2024-06-15 17:46:41', 0, 0, 14, 0, '893d4d97-9b4f-444d-803e-d59da8c5dbc7', '2024-07-15 17:46:41'),
+(259, 'eyJhbGciOiJIUzI1NiJ9.eyJwaG9uZU51bWJlciI6IjAxMjM0NTY3ODkiLCJ1c2VySWQiOjE0LCJzdWIiOiIwMTIzNDU2Nzg5IiwiZXhwIjoxNzE4NDczNzAwfQ.4lgwrfvjbkfJAMtUhoQjGteVIkk4a86mpJjTzFLIPyA', 'Bearer', '2024-06-15 17:48:21', 0, 0, 14, 0, 'ecbc4548-ea1e-45de-adc8-13cf3a54552f', '2024-07-15 17:48:21'),
+(260, 'eyJhbGciOiJIUzI1NiJ9.eyJwaG9uZU51bWJlciI6IjAxMjM0NTY3ODkiLCJ1c2VySWQiOjE0LCJzdWIiOiIwMTIzNDU2Nzg5IiwiZXhwIjoxNzE4NDczNzcwfQ.yk0txVKHYqPGfgxxRqpAdLha9rQf2VeV8GtPhnai_LA', 'Bearer', '2024-06-15 17:49:31', 0, 0, 14, 0, '47f1ad7e-62dd-4f1b-8eaf-edeef90b6f86', '2024-07-15 17:49:31');
 
 -- --------------------------------------------------------
 
@@ -384,7 +404,9 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `fullname`, `phone_number`, `address`, `password`, `created_at`, `updated_at`, `is_active`, `date_of_birth`, `facebook_account_id`, `google_account_id`, `role_id`) VALUES
 (12, 'admin', '12345678910', 'asa', '$2a$10$8Qz5hC5buxb83mXl6/uKjuODomZ.Kc5V0do5kldTLteStNxzanqVq', '2024-05-11 13:27:15', '2024-05-11 13:27:15', 1, '2000-01-02', 0, 0, 2),
-(13, 'users', '1234567890', 'ủe', '$2a$10$sRb7AApckTuuCyyRYySrluq0Ubo2vp66JW..cdx8IdY8DNXRPEMoi', '2024-05-11 13:40:52', '2024-05-11 13:40:52', 1, '2000-01-12', 0, 0, 1);
+(13, 'painten', '1234567890', 'Ho Chi Minh City', '$2a$10$kca.yuTQhgWqzsDigRY59.cdgqrwqnsuTSZnsisivK8VOjzQMmXya', '2024-05-11 13:40:52', '2024-05-14 18:13:14', 1, '2003-04-18', 0, 0, 1),
+(14, 'Phan Huu Thinh', '0123456789', 'HCM', '$2a$10$kgzER7z06kVYtNgjRExqQeO8BPTPNk5oK3dOyuV3MknGJDYygDTcy', '2024-05-14 15:21:07', '2024-05-14 15:21:07', 1, '2003-04-18', 0, 0, 2),
+(16, 'Luu Bang Thuan', '0963101750', 'HCM City', '$2a$10$qc56850k.lcZSdS6BIMqAOA37PTowe7uCoUMFFnsYO4dtS4pfz/Q6', '2024-05-15 14:55:18', '2024-05-16 17:49:44', 0, '2000-01-10', 0, 0, 1);
 
 --
 -- Indexes for dumped tables
@@ -500,7 +522,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `comments`
@@ -530,13 +552,13 @@ ALTER TABLE `favorites`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -560,13 +582,13 @@ ALTER TABLE `social_accounts`
 -- AUTO_INCREMENT for table `tokens`
 --
 ALTER TABLE `tokens`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=261;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Constraints for dumped tables
