@@ -3,23 +3,22 @@ package com.project.shopapp;
 import org.openqa.selenium.By;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
 
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 //@SpringBootTest
 public class TestUserOperation {
 
     WebDriver driver;
+    private List<WebDriver> drivers = new ArrayList<>();
 
-    @BeforeTest
+
+    @BeforeMethod
     public void init() {
         WebDriverManager.chromedriver().setup();
 
@@ -28,24 +27,41 @@ public class TestUserOperation {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); // Implicit wait
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30)); // Page load timeout
         driver.manage().timeouts().setScriptTimeout(Duration.ofSeconds(3000)); // Script timeout
-
+        drivers.add(driver); // Thêm driver vào danh sách
+        Helper.setDriver(driver); // Set driver cho Helper
     }
 
-    //Sign in for admin
     @Test
-    public void TestCase1() throws InterruptedException {
+    public void TestCase1(){
+        WebDriver driver = drivers.get(drivers.size() - 1); // Lấy driver hiện tại
+        driver.findElement(By.id("btn-login")).click();
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        //thao tác đăng nhập vào user
+        Helper.login(driver,"00123456789","123123");
+        Helper.clickElement(driver, "product-item", 3);
+        driver.findElement(By.className("btn-success")).click();
+
+        // điền thông tin
+        driver.findElement(By.id("cart")).click();
+        driver.findElement(By.id("fullname")).sendKeys("Bui Thanh Son");
+        driver.findElement(By.id("email")).sendKeys("son@gmail.com");
+        driver.findElement(By.id("phone")).sendKeys("00123456789");
+        driver.findElement(By.id("address")).sendKeys("HCM city");
+        Helper.selectOptionByIndex(driver, "#shippingMethod",0);
+        Helper.selectOptionByIndex(driver, "#paymentMethod",1);
+        driver.findElement(By.className("btn-light")).click();
+    }
+
+
+
+    //Operation full for user
+    @Test
+    public void TestCase2() throws InterruptedException {
 
         driver.findElement(By.id("btn-login")).click();
 
         //thao tác đăng nhập vào user
-        driver.findElement(By.name("phone")).sendKeys("0963101750");
-        Thread.sleep(500);
-        driver.findElement(By.name("password")).sendKeys("123123");
-        Thread.sleep(500);
-        driver.findElement(new By.ByClassName("login-button")).click();
-        Thread.sleep(500);
+        Helper.login(driver,"0345872900","123123");
 
 
         //tìm kiếm sản phẩm hiện có
@@ -93,9 +109,8 @@ public class TestUserOperation {
 
 
 
-    @AfterTest
+    @AfterMethod
     public void tearDown(){
-        if (driver != null)
-            driver.quit();
+        Helper.closeAllBrowser();
     }
 }

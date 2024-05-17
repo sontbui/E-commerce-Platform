@@ -3,120 +3,97 @@ package com.project.shopapp;
 import org.openqa.selenium.By;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import java.time.Duration;
-
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
-//@SpringBootTest
 public class TestLogin {
 
-	WebDriver driver;
+	private List<WebDriver> drivers = new ArrayList<>();
 
-	@BeforeTest
-	public void init(){
+	@BeforeMethod
+	public void init() {
 		WebDriverManager.chromedriver().setup();
-
-		driver = new ChromeDriver();
-		driver.get("http://localhost:4200");
+		WebDriver driver = new ChromeDriver();
+		driver.get("http://localhost:4200/login");
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); // Implicit wait
 		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30)); // Page load timeout
-		driver.manage().timeouts().setScriptTimeout(Duration.ofSeconds(3000)); // Script timeout
-
-	}
-	//Sign in for admin
-    @Test
-    public void TestCase1() throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-
-		driver.findElement(By.id("btn-login")).click();
-
-		//thao tác đăng nhập vào admin
-		driver.findElement(By.name("phone")).sendKeys("0123456789");
-		Thread.sleep(500);
-		driver.findElement(By.name("password")).sendKeys("123123");
-		Thread.sleep(500);
-		driver.findElement(new By.ByClassName("login-button")).click();
-		Thread.sleep(500);
+		driver.manage().timeouts().setScriptTimeout(Duration.ofSeconds(30)); // Script timeout
+		drivers.add(driver); // Thêm driver vào danh sách
+		Helper.setDriver(driver); // Set driver cho Helper
 	}
 
-	//Sign in for user
+	// sign in for admin
 	@Test
-	public void TestCase2()
-	{
-		driver.findElement(By.name("phone")).sendKeys("123123");
-		driver.findElement(By.name("password")).sendKeys("123123");
-		driver.findElement(new By.ByClassName("login-button")).click();
+	public void TestCase1() {
+
+		WebDriver driver = drivers.get(drivers.size() - 1); // Lấy driver hiện tại
+		Helper.login(driver,"0123456789", "123123");
 	}
-	//Null phone and password
+
+	//sign in for user
 	@Test
-	public void TestCase3()
-	{
-		driver.findElement(By.name("phone")).sendKeys("");
-		driver.findElement(By.name("password")).sendKeys("");
-		driver.findElement(new By.ByClassName("login-button")).click();
+	public void TestCase2() {
+		WebDriver driver = drivers.get(drivers.size() - 1); // Lấy driver hiện tại
+		Helper.login(driver,"0963101750","123123");
 	}
 
-	//Null phone, correct password
+	// null phone and password
 	@Test
-	public void TestCase4()
-	{
-		driver.findElement(By.name("phone")).sendKeys("");
-		driver.findElement(By.name("password")).sendKeys("123123");
-		driver.findElement(new By.ByClassName("login-button")).click();
+	public void TestCase3() {
+		WebDriver driver = drivers.get(drivers.size() - 1); // Lấy driver hiện tại
+		Helper.login(driver,"","");
+		Helper.acceptAlert(driver);
 	}
 
-	//correct phone, null password
+	// null phone and correct password
 	@Test
-	public void TestCase5()
-	{
-		driver.findElement(By.name("phone")).sendKeys("123123");
-		driver.findElement(By.name("password")).sendKeys("");
-		driver.findElement(new By.ByClassName("login-button")).click();
+	public void TestCase4() {
+		WebDriver driver = drivers.get(drivers.size() - 1); // Lấy driver hiện tại
+		Helper.login(driver,"","123123");
+		Helper.acceptAlert(driver);
 	}
 
-	//correct phone, wrong password
+	// correct phone and null password
 	@Test
-	public void TestCase6()
-	{
-		driver.findElement(By.name("phone")).sendKeys("123123");
-		driver.findElement(By.name("password")).sendKeys("hhhhh");
-		driver.findElement(new By.ByClassName("login-button")).click();
+	public void TestCase5() {
+		WebDriver driver = drivers.get(drivers.size() - 1); // Lấy driver hiện tại
+
+		Helper.login(driver,"0963101750","");
+		Helper.acceptAlert(driver);
 	}
 
-
-	//wrong phone, correct password
+	// correct phone and wrong password
 	@Test
-	public void TestCase7()
-	{
-		driver.findElement(By.name("phone")).sendKeys("111111111111111");
-		driver.findElement(By.name("password")).sendKeys("123123");
-		driver.findElement(new By.ByClassName("login-button")).click();
+	public void TestCase6() {
+		WebDriver driver = drivers.get(drivers.size() - 1); // Lấy driver hiện tại
+		Helper.login(driver,"0963101750","55555555");
+		Helper.acceptAlert(driver);
 	}
 
-
-	//wrong phone, wrong password
+	// wrong phone and correct password
 	@Test
-	public void TestCase9()
-	{
-		driver.findElement(By.name("phone")).sendKeys("1111111111");
-		driver.findElement(By.name("password")).sendKeys("55555555");
-		driver.findElement(new By.ByClassName("login-button")).click();
+	public void TestCase7() {
+		WebDriver driver = drivers.get(drivers.size() - 1); // Lấy driver hiện tại
+		Helper.login(driver,"11111111111111","123123");
+		Helper.acceptAlert(driver);
 	}
 
+	// wrong phone and wrong password
+	@Test
+	public void TestCase9() {
+		WebDriver driver = drivers.get(drivers.size() - 1); // Lấy driver hiện tại
+		Helper.login(driver,"11111111","555555555555");
+		Helper.acceptAlert(driver);
+	}
 
 
 	@AfterTest
-	public void tearDown(){
-		if (driver != null) {
-			driver.quit();
-		}
+	public void teardown() {
+		Helper.closeAllBrowser();
 	}
-
 }
-
