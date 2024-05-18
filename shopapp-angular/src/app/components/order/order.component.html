@@ -101,7 +101,7 @@
                                 <td>
                                     <div class="product-info">
                                         <img [src]="item.product.thumbnail" alt="Product Image" class="product-image">
-                                        
+
                                     </div>
                                 </td>
                                 <td>
@@ -109,7 +109,7 @@
                                         <div class="border-wrapper">
                                             <button class="btn-de-in" (click)="decreaseQuantity(i)">-</button>
                                             {{ item.quantity }}
-                                            <button (click)="increaseQuantity(i)">+</button>
+                                            <button id="increaseBtn" (click)="increaseQuantity(i)" >+</button>
                                         </div>
                                     </div>
                                 </td>
@@ -136,7 +136,7 @@
                     </div>
                     <h4 class="header-text text-end   total-price">Total price: ${{ totalAmount | number:'1.2-2'}} </h4>
                 </div>
-                
+
                 @if(couponDiscount > 0) {
                 <div class="text-start mt-3">
                     <h6 class="header-text text-end ">You got discount: ${{ couponDiscount | number:'1.2-2'}} </h6>
@@ -145,7 +145,7 @@
                 <div class="text-start mt-3" *ngIf="cartItems.length > 0">
                     <button (click)="placeOrder()" class="btn  orderBTN"  type="button">Order</button>
                 </div>
-            </div>      
+            </div>
         </div>
     </form>
 </div>
