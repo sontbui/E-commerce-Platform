@@ -34,7 +34,7 @@ public class TestCart {
 
     // xóa sản phẩm sau khi đã thêm vào giỏ hàng
     @Test(priority = 1)
-    public void TestCase1() throws InterruptedException {
+    public void TestCase21() throws InterruptedException {
         WebDriver driver = drivers.get(drivers.size() - 1);
         driver.findElement(By.id("btn-login")).click();
         //thao tác đăng nhập vào user
@@ -61,7 +61,7 @@ public class TestCart {
 
     // tăng giảm số lượng sau khi thêm vào giỏ hàng
     @Test(priority = 2)
-    public void TestCase2() throws InterruptedException {
+    public void TestCase22() throws InterruptedException {
         WebDriver driver = drivers.get(drivers.size() - 1);
         driver.findElement(By.id("btn-login")).click();
         //thao tác đăng nhập vào user
@@ -85,7 +85,7 @@ public class TestCart {
 
     // kiểm tra đã có sản phẩm được thêm vào giỏ hàng hay chưa
     @Test(priority = 3)
-    public void TeseCase3() throws InterruptedException {
+    public void TeseCase23() throws InterruptedException {
         WebDriver driver = drivers.get(drivers.size() - 1);
         driver.findElement(By.id("btn-login")).click();
         //thao tác đăng nhập vào user
@@ -104,9 +104,9 @@ public class TestCart {
             Helper.clickElement(driver, "nav-link",0);
         }
     }
-
+    // mua hàng và điền đầy đủ thông tin
     @Test(priority = 4)
-    public void TestCase4() throws InterruptedException {
+    public void TestCase24() throws InterruptedException {
         WebDriver driver = drivers.get(drivers.size() - 1);
         driver.findElement(By.id("btn-login")).click();
 
