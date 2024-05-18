@@ -35,7 +35,7 @@ public class TestAdminOperation {
 
     // Using order
     @Test(priority = 1)
-    public void TestCase1() throws InterruptedException {
+    public void TestCase25() throws InterruptedException {
         WebDriver driver = drivers.get(drivers.size() - 1); // Lấy driver hiện tại
 
         driver.findElement(By.id("btn-login")).click();
@@ -69,7 +69,7 @@ public class TestAdminOperation {
 
     // Using categories
     @Test(priority = 2)
-    public void TestCase2() throws InterruptedException {
+    public void TestCase26() throws InterruptedException {
         WebDriver driver = drivers.get(drivers.size() - 1); // Lấy driver hiện tại
         driver.findElement(By.id("btn-login")).click();
         Helper.login(driver, "0123456789", "123123");
@@ -101,8 +101,10 @@ public class TestAdminOperation {
 
     }
 
+
+    // using product
     @Test(priority = 3)
-    public void TestCase3() throws InterruptedException {
+    public void TestCase27() throws InterruptedException {
 
 
         driver.findElement(By.id("btn-login")).click();
@@ -145,9 +147,9 @@ public class TestAdminOperation {
 
     }
 
-
+    // using user
     @Test(priority = 4)
-    public void TestCase4() throws InterruptedException {
+    public void TestCase28() throws InterruptedException {
         driver.findElement(By.id("btn-login")).click();
 
         //thao tác đăng nhập vào admin
@@ -163,16 +165,6 @@ public class TestAdminOperation {
         Thread.sleep(1000);
         Helper.dismissAlert(driver);
     }
-
-    //thao tác quản lý user
-//        driver.findElement(By.id("test_user")).click();
-//        Thread.sleep(1000);
-//        Helper.clickElement(driver, "btn-danger", 2);
-//        Thread.sleep(1000);
-//        Helper.dismissAlert(driver);
-
-
-
 
     @AfterMethod
     public void tearDown(){

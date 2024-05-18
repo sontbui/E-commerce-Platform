@@ -23,15 +23,15 @@ public class TestRegister {
         Helper.setDriver(driver); // Set driver cho Helper
     }
 
-    @Test
-    public void TestCase1() throws InterruptedException {
+    @Test(priority = 1)
+    public void TestCase10() throws InterruptedException {
         WebDriver driver = drivers.get(drivers.size() - 1); // Lấy driver hiện tại
         Helper.register(driver, "0963101750", "123123", "123123", "Luu Bang Thuan", "20012000", "HCM City");
         Helper.acceptAlert(driver);
     }
 
-    @Test
-    public void TestCase2() throws InterruptedException {
+    @Test(priority = 2)
+    public void TestCase11() throws InterruptedException {
         WebDriver driver = drivers.get(drivers.size() - 1); // Lấy driver hiện tại
         Helper.register(driver, "0345872900", "123123", "123123", "Bui Thanh Son", "11112001", "HCMs");
         Helper.acceptAlert(driver);

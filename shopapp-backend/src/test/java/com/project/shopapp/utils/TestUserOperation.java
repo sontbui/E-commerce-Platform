@@ -12,7 +12,6 @@ import java.util.List;
 
 import org.testng.annotations.*;
 
-//@SpringBootTest
 public class TestUserOperation {
 
     WebDriver driver;
@@ -37,7 +36,7 @@ public class TestUserOperation {
     //tìm kiếm sản phẩm có chọn loại sản phẩm
     // vd: pc, index pc là3
     @Test(priority = 1)
-    public void TestCase1() throws InterruptedException {
+    public void TestCase12() throws InterruptedException {
         WebDriver driver = drivers.get(drivers.size() - 1); // Lấy driver hiện tại
 
         // tìm kiếm
@@ -53,7 +52,7 @@ public class TestUserOperation {
     // tìm kiếm sản phẩm bằng số liệu mà không chọn loại sản phẩm
     // vd: 13
     @Test(priority = 2)
-    public void TestCase2() throws InterruptedException {
+    public void TestCase13() throws InterruptedException {
         WebDriver driver = drivers.get(drivers.size() - 1); // Lấy driver hiện tại
 
         // tìm kiếm
@@ -68,7 +67,7 @@ public class TestUserOperation {
     // tìm kiếm sản phẩm mà lựa chọn loại sản phẩm không phù hợp
     // vd: tìm Mac nhưng loại sản phẩm là Iphone (index: 4)
     @Test(priority = 3)
-    public void TestCase3() throws InterruptedException {
+    public void TestCase14() throws InterruptedException {
         WebDriver driver = drivers.get(drivers.size() - 1); // Lấy driver hiện tại
 
         // tìm kiếm
@@ -84,7 +83,7 @@ public class TestUserOperation {
     // tìm kiếm không nhập vào tên sản phẩm mà chọn loại sản phẩm
     // vd: chọn loại sp Accessories (index: 1)
     @Test(priority = 4)
-    public void TestCase4() throws InterruptedException {
+    public void TestCase15() throws InterruptedException {
         WebDriver driver = drivers.get(drivers.size() - 1); // Lấy driver hiện tại
 
         // tìm kiếm
@@ -99,7 +98,7 @@ public class TestUserOperation {
 
     //chọn sản phẩm sau đó xem ảnh
     @Test(priority = 5)
-    public void TestCase5() throws InterruptedException {
+    public void TestCase16() throws InterruptedException {
         WebDriver driver = drivers.get(drivers.size() - 1); // Lấy driver hiện tại
 
         Helper.clickElement(driver, "product-item", 6);
@@ -114,7 +113,7 @@ public class TestUserOperation {
 
     //chọn sản phẩm sau đó tăng số lượng bằng nút "+" hoặc giảm bằng nút "-"
     @Test(priority = 6)
-    public void TestCase6() throws InterruptedException {
+    public void TestCase17() throws InterruptedException {
         WebDriver driver = drivers.get(drivers.size() - 1); // Lấy driver hiện tại
         Helper.clickElement(driver, "product-item", 7);
 
@@ -132,7 +131,7 @@ public class TestUserOperation {
 
     //chọn sản phẩm sau đó tăng giảm số lượng thủ công bằng cách nhập vào
     @Test(priority = 7)
-    public void TestCase7() throws InterruptedException {
+    public void TestCase18() throws InterruptedException {
         WebDriver driver = drivers.get(drivers.size() - 1); // Lấy driver hiện tại
         Helper.clickElement(driver, "product-item", 7);
         Thread.sleep(2000);
@@ -146,7 +145,7 @@ public class TestUserOperation {
 
     //đăng nhập sau đó thêm 1 sản phẩm vào giỏ hàng
     @Test(priority = 8)
-    public void TestCase8() throws InterruptedException {
+    public void TestCase19() throws InterruptedException {
         WebDriver driver = drivers.get(drivers.size() - 1); // Lấy driver hiện tại
         driver.findElement(By.id("btn-login")).click();
 
@@ -163,7 +162,7 @@ public class TestUserOperation {
 
     //đăng nhập sau đó mua sản phẩm và điền thông tin đầy đủ
     @Test(priority = 9)
-    public void TeseCase9() throws InterruptedException {
+    public void TeseCase20() throws InterruptedException {
         WebDriver driver = drivers.get(drivers.size() - 1);
         driver.findElement(By.id("btn-login")).click();
         //thao tác đăng nhập vào user

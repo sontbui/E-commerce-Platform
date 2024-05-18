@@ -5,7 +5,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import java.time.Duration;
@@ -93,16 +92,28 @@ public class TestLogin {
 
 		Helper.acceptAlert(driver);
 	}
-
 	// wrong phone and wrong password
 	@Test
-	public void TestCase9() {
+	public void TestCase8() {
 		WebDriver driver = drivers.get(drivers.size() - 1); // Lấy driver hiện tại
 		Helper.login(driver,"11111111","555555555555");
 		driver.findElement(By.className("password-toggle")).click();
 
 		Helper.acceptAlert(driver);
 	}
+
+	// nhập dư hoặc thiếu số điện thoại
+	@Test
+	public void TestCase9(){
+		WebDriver driver = drivers.get(drivers.size() - 1); // Lấy driver hiện tại
+		Helper.login(driver,"012346578","123123");
+		driver.findElement(By.className("password-toggle")).click();
+
+		Helper.acceptAlert(driver);
+	}
+
+
+
 
 
 	@AfterMethod
