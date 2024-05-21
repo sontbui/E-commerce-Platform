@@ -13,7 +13,7 @@ import com.project.shopapp.models.*;
 import com.project.shopapp.repositories.RoleRepository;
 import com.project.shopapp.repositories.TokenRepository;
 import com.project.shopapp.repositories.UserRepository;
-import com.project.shopapp.utils.MessageKeys;
+import ChromeBrowser.MessageKeys;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
