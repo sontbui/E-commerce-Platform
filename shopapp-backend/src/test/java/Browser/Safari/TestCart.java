@@ -1,4 +1,4 @@
-package Browser.SafariBrowser;
+package Browser.Safari;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
@@ -19,7 +19,7 @@ public class TestCart {
 
     @BeforeMethod
     public void init() {
-        WebDriverManager.chromedriver().setup();
+        WebDriverManager.safaridriver().setup();
 
         driver = new SafariDriver();
         driver.get("http://localhost:4200");

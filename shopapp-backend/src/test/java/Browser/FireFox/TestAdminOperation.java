@@ -1,18 +1,18 @@
-package Browser.ChromeBrowser;
+package Browser.FireFox;
 
-import org.openqa.selenium.By;
 import io.github.bonigarcia.wdm.WebDriverManager;
-
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.testng.annotations.*;
 
 //@SpringBootTest
 public class TestAdminOperation {
@@ -22,9 +22,9 @@ public class TestAdminOperation {
 
     @BeforeMethod
     public void init() {
-        WebDriverManager.chromedriver().setup();
+        WebDriverManager.firefoxdriver().setup();
 
-        driver = new ChromeDriver();
+        driver = new FirefoxDriver();
         driver.get("http://localhost:4200");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); // Implicit wait
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30)); // Page load timeout

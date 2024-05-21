@@ -1,4 +1,4 @@
-package Browser.SafariBrowser;
+package Browser.FireFox;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.Select;

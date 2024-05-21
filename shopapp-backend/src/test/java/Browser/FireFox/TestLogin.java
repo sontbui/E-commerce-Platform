@@ -1,9 +1,9 @@
-package Browser.SafariBrowser;
+package Browser.FireFox;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -18,8 +18,8 @@ public class TestLogin {
 
 	@BeforeMethod
 	public void init() throws InterruptedException {
-		WebDriverManager.chromedriver().setup();
-		WebDriver driver = new SafariDriver();
+		WebDriverManager.firefoxdriver().setup();
+		WebDriver driver = new FirefoxDriver();
 		driver.get("http://localhost:4200/login");
 		Thread.sleep(1000);
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); // Implicit wait

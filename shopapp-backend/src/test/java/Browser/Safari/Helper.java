@@ -1,7 +1,8 @@
-package Browser.ChromeBrowser;
+package Browser.Safari;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.Select;
+
 import java.util.ArrayList;
 import java.util.List;
 

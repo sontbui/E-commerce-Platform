@@ -1,12 +1,13 @@
-package Browser.ChromeBrowser;
+package Browser.Safari;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.safari.SafariDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,8 +18,8 @@ public class TestManageAccount {
 
     @BeforeMethod
     public void init(){
-        WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver();
+        WebDriverManager.safaridriver().setup();
+        WebDriver driver = new SafariDriver();
         driver.get("http://localhost:4200");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); // Implicit wait
         drivers.add(driver); // Thêm driver vào danh sách

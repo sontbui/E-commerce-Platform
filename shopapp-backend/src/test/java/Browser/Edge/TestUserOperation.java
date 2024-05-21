@@ -1,16 +1,17 @@
-package Browser.ChromeBrowser;
+package Browser.Edge;
 
-import org.openqa.selenium.By;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.testng.annotations.*;
 
 public class TestUserOperation {
 
@@ -19,9 +20,9 @@ public class TestUserOperation {
 
     @BeforeMethod
     public void init() {
-        WebDriverManager.chromedriver().setup();
+        WebDriverManager.edgedriver().setup();
 
-        driver = new ChromeDriver();
+        driver = new EdgeDriver();
         driver.get("http://localhost:4200");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); // Implicit wait
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30)); // Page load timeout
