@@ -1,6 +1,6 @@
 package com.project.shopapp.components;
 
-import com.project.shopapp.utils.WebUtils;
+import ChromeBrowser.WebUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;
