@@ -39,7 +39,7 @@ public class TestDatabase {
         assertTrue(!connection.isClosed());
     }
 
-    //test create table
+    //Test create table
     @Test
     public void testCreateTable() throws SQLException {
         // statement string
