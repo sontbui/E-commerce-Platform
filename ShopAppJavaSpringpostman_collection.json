@@ -1833,7 +1833,7 @@
 									"  pm.expect(pm.response.json().data).to.be.an('array');\r",
 									"});\r",
 									"\r",
-									"\r",
+									"// test properties of order\r",
 									"pm.test(\"User object in each order has required properties\", function () {\r",
 									"  pm.response.json().data.forEach(order => {\r",
 									"    const user = order.user;\r",
