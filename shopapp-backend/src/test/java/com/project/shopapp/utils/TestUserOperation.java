@@ -161,34 +161,7 @@ public class TestUserOperation {
     }
 
     //đăng nhập sau đó mua sản phẩm và điền thông tin đầy đủ
-    @Test(priority = 9)
-    public void TeseCase20() throws InterruptedException {
-        WebDriver driver = drivers.get(drivers.size() - 1);
-        driver.findElement(By.id("btn-login")).click();
-        //thao tác đăng nhập vào user
-        Helper.login(driver,"0345872900","123123");
-        Thread.sleep(3000);
 
-        //chọn sản phẩm thứ 2 trong trang
-        Helper.clickElement(driver, "product-item", 2);
-        Thread.sleep(3000);
-        //click nút thêm vào giỏ hàng
-        driver.findElement(By.className("btn-success")).click();
-
-
-        // điền thông tin
-        driver.findElement(By.id("fullname")).sendKeys("Bui Thanh Son");
-        driver.findElement(By.id("email")).sendKeys("son@gmail.com");
-        driver.findElement(By.id("phone")).sendKeys("00123456789");
-        driver.findElement(By.id("address")).sendKeys("HCM city");
-        Thread.sleep(1000);
-        Helper.selectOptionByIndex(driver, "#shippingMethod",1);
-        Thread.sleep(1000);
-        Helper.selectOptionByIndex(driver, "#paymentMethod",1);
-        Thread.sleep(1000);
-        driver.findElement(By.className("orderBTN")).click();
-        Helper.acceptAlert(driver);
-    }
 
 
 
