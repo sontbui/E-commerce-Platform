@@ -28,7 +28,7 @@ public class TestLogin {
 		Helper.setDriver(driver); // Set driver cho Helper
 	}
 
-	// sign in for admin
+	// Sign in for admin
 	@Test
 	public void TestCase1() throws InterruptedException {
 

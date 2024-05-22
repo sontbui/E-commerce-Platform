@@ -18,7 +18,7 @@ public class TestRegister {
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
         driver.get("http://localhost:4200/register");
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); // Implicit wait
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); // Implicit Wait
         drivers.add(driver); // Thêm driver vào danh sách
         Helper.setDriver(driver); // Set driver cho Helper
     }

@@ -32,7 +32,7 @@ public class TestCart {
     }
 
 
-    // xóa sản phẩm sau khi đã thêm vào giỏ hàng
+    // Xóa sản phẩm sau khi đã thêm vào giỏ hàng
     @Test(priority = 1)
     public void TestCase21() throws InterruptedException {
         WebDriver driver = drivers.get(drivers.size() - 1);

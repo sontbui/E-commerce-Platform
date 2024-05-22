@@ -25,7 +25,7 @@ public class TestUserOperation {
         driver.get("http://localhost:4200");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); // Implicit wait
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30)); // Page load timeout
-        driver.manage().timeouts().setScriptTimeout(Duration.ofSeconds(3000)); // Script timeout
+        driver.manage().timeouts().setScriptTimeout(Duration.ofSeconds(3000)); // Script timeout.
         drivers.add(driver); // Thêm driver vào danh sách
         Helper.setDriver(driver); // Set driver cho Helper
 
@@ -33,7 +33,7 @@ public class TestUserOperation {
 
 
 
-    //tìm kiếm sản phẩm có chọn loại sản phẩm
+    //Tìm kiếm sản phẩm có chọn loại sản phẩm
     // vd: pc, index pc là3
     @Test(priority = 1)
     public void TestCase12() throws InterruptedException {

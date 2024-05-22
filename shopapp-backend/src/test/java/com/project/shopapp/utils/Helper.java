@@ -94,7 +94,7 @@ public class Helper {
             try {
                 Alert alert = driver.switchTo().alert();
                 alert.accept();
-                // hoặc alert.dismiss(); để hủy bỏ
+                // or alert.dismiss(); to cancel
             } catch (Exception e) {
                 break;
             }

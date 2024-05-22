@@ -31,7 +31,7 @@ public class TestDatabaseFailure {
         }
     }
 
-//    bc name = Category Testsss doesn't exist
+//    bc name = Category Tests doesn't exist
     @Test
     public void testDropCategory() throws SQLException {
         String dropTableQuery = "DELETE FROM categories WHERE name = 'Category Testsss';";

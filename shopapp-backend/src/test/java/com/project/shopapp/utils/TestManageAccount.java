@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TestManageAccount {
-    WebDriver driver;
+    WebDriver Driver;
     private List<WebDriver> drivers = new ArrayList<>();
 
     @BeforeMethod

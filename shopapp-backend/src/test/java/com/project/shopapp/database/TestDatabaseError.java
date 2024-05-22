@@ -31,7 +31,7 @@ public class TestDatabaseError {
         }
     }
 
-    //test create table error bc table users alread exist
+    //Test create table error bc table users alread exist
     @Test
     public void testCreateTable() throws SQLException {
         // statement string

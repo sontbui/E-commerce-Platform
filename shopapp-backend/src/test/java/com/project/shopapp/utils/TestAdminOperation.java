@@ -40,7 +40,7 @@ public class TestAdminOperation {
 
         driver.findElement(By.id("btn-login")).click();
 
-        //thao tác đăng nhập vào admin
+        //thao tác đăng nhập vào Admin
         Helper.login(driver, "0123456789", "123123");
         Thread.sleep(1000);
 
