@@ -31,7 +31,6 @@ public class CategoryController {
 
     @PostMapping("")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    //Nếu tham số truyền vào là 1 object thì sao ? => Data Transfer Object = Request Object
     public ResponseEntity<ResponseObject> createCategory(
             @Valid @RequestBody CategoryDTO categoryDTO,
             BindingResult result) {
