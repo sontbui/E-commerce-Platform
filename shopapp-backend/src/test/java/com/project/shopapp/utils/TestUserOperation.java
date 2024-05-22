@@ -25,7 +25,7 @@ public class TestUserOperation {
         driver.get("http://localhost:4200");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); // Implicit wait
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30)); // Page load timeout
-        driver.manage().timeouts().setScriptTimeout(Duration.ofSeconds(3000)); // Script timeout
+        driver.manage().timeouts().setScriptTimeout(Duration.ofSeconds(3000)); // Script timeout.
         drivers.add(driver); // Thêm driver vào danh sách
         Helper.setDriver(driver); // Set driver cho Helper
 
