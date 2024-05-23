@@ -14,7 +14,8 @@
                     @if(orderForm.get('fullname')!.invalid &&
                     orderForm.get('fullname')!.touched) {
                     <div class="invalid-feedback">
-                        Full name is required !!
+                        {{ orderForm.get('fullname')!.hasError('required') ? 'Name is required !!' : 'Name have leat 2 characters !' }}
+                        
                     </div>
                     }
                 </div>
@@ -41,10 +42,8 @@
                     <div class="invalid-feedback">
                         {{ orderForm.get('phone_number')!.hasError('required') ? 'Phone number is required' :
                         orderForm.get('phone_number')!.hasError('pattern') ? 'Phone number is invalid' :
-                        orderForm.get('phone_number')!.hasError('minlength') ? 'Phone number must be at least 10 digits
-                        long' :
-                        orderForm.get('phone_number')!.hasError('maxlength') ? 'Phone number cannot be more than 11
-                        digits long' : '' }}
+                        orderForm.get('phone_number')!.hasError('minlength') ? 'Phone number must be at least 10 digits long' :
+                        orderForm.get('phone_number')!.hasError('maxlength') ? 'Phone number cannot be more than 11 digits long' : '' }}
 
                     </div>
                     }
@@ -85,66 +84,71 @@
             </div>
             <div class="col-md-7">
                 <h2 class="product-order">Product in cart</h2>
-               <div class="product-table-wrapper">
-                <table class="product-table">
-                    <tbody>
-                        <ng-container *ngFor="let item of cartItems; let i = index">
-                            <tr>
-                                <td colspan="6">
-                                    <hr class="hr-long">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="6" class="product-name">{{ item.product.name }}</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="product-info">
-                                        <img [src]="item.product.thumbnail" alt="Product Image" class="product-image">
+                <div class="product-table-wrapper">
+                    <table class="product-table">
+                        <tbody>
+                            <ng-container *ngFor="let item of cartItems; let i = index">
+                                <tr>
+                                    <td colspan="6">
+                                        <hr class="hr-long">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="6" class="product-name">{{ item.product.name }}</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="product-info">
+                                            <img [src]="item.product.thumbnail" alt="Product Image"
+                                                class="product-image">
 
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="product-quantity">
-                                        <div class="border-wrapper">
-                                            <button class="btn-de-in" (click)="decreaseQuantity(i)">-</button>
-                                            {{ item.quantity }}
-                                            <button id="increaseBtn" (click)="increaseQuantity(i)" >+</button>
                                         </div>
-                                    </div>
-                                </td>
+                                    </td>
+                                    <td>
+                                        <div class="product-quantity">
+                                            <div class="border-wrapper">
+                                                <button class="btn-de-in" (click)="decreaseQuantity(i)">-</button>
+                                                {{ item.quantity }}
+                                                <button id="increaseBtn" (click)="increaseQuantity(i)">+</button>
+                                            </div>
+                                        </div>
+                                    </td>
 
-                                <td><del class="price-original">{{ (item.product.price ) | number:'1.2-2' }}</del></td>
-                                <td><span class="arrow">→</span></td>
-                                <td class="price-after">{{ ((item.product.price * 0.95 ) * item.quantity) |
-                                    number:'1.2-2' }}</td>
-                                <td>
-                                    <button class="btn btn-danger" (click)="confirmDelete(i)">
-                                        Remove
-                                    </button>
-                                </td>
-                            </tr>
-                        </ng-container>
-                    </tbody>
+                                    <td><del class="price-original">{{ (item.product.price ) | number:'1.2-2' }}</del>
+                                    </td>
+                                    <td><span class="arrow">→</span></td>
+                                    <td class="price-after">{{ ((item.product.price * 0.95 ) * item.quantity) |
+                                        number:'1.2-2' }}</td>
+                                    <td>
+                                        <button class="btn btn-danger" (click)="confirmDelete(i)">
+                                            Remove
+                                        </button>
+                                    </td>
+                                </tr>
+                            </ng-container>
+                        </tbody>
 
-                </table>
-               </div>
+                    </table>
+                </div>
                 <div class="text-start mt-3 coupon-and-price-container">
-<!--                    <div class="input-group">-->
-<!--                        <input type="text" class="form-controls coupon" formControlName="couponCode" placeholder="Enter coupon">-->
-<!--                        <button (click)="applyCoupon()" class="btn btn-light" type="button">Apply</button>-->
-<!--                    </div>-->
+                    <!--                    <div class="input-group">-->
+                    <!--                        <input type="text" class="form-controls coupon" formControlName="couponCode" placeholder="Enter coupon">-->
+                    <!--                        <button (click)="applyCoupon()" class="btn btn-light" type="button">Apply</button>-->
+                    <!--                    </div>-->
                     <h4 class="header-text text-end   total-price">Total price: ${{ totalAmount | number:'1.2-2'}} </h4>
                 </div>
 
-                @if(couponDiscount > 0) {
-                <div class="text-start mt-3">
-                    <h6 class="header-text text-end ">You got discount: ${{ couponDiscount | number:'1.2-2'}} </h6>
+                @if(!isFormValid()){
+                
+                <div class="text-start mt-3" *ngIf="cartItems.length > 0">
+                    <button  class="btn  orderBTN" type="button" [disabled]="!isFormValid()">Please fill full and valid information form !!!</button>
                 </div>
                 }
-                <div class="text-start mt-3" *ngIf="cartItems.length > 0">
-                    <button (click)="placeOrder()" class="btn  orderBTN"  type="button">Order</button>
-                </div>
+                @else {
+                    <div class="text-start mt-3">
+                        <button (click)="placeOrder()" class="btn orderBTN" type="submit" [disabled]="!isFormValid()">Order</button>
+                    </div>
+                }
             </div>
         </div>
     </form>

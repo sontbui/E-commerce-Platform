@@ -14,7 +14,7 @@
                 @if(userProfileForm.get('fullname')!.invalid &&  
                   userProfileForm.get('fullname')!.touched) {
                     <div class="invalid-feedback">
-                      {{ userProfileForm.get('fullname') ? (userProfileForm.get('fullname')!.hasError('minLength') ? 'Fullname leastest is 5 characters' : 'Full name is required') : '' }}
+                      {{ (userProfileForm.get('fullname')!.hasError('required') ? 'Full name is required' :  'Fullname leastest is 5 characters' )}}
                   </div>
                   }                    
             </div>

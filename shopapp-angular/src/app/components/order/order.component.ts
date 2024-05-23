@@ -66,7 +66,7 @@ export class OrderComponent implements OnInit{
   constructor() {
     // Tạo FormGroup và các FormControl tương ứng
     this.orderForm = this.formBuilder.group({
-      fullname: ['', Validators.required], // fullname là FormControl bắt buộc      
+      fullname: ['', [Validators.required, Validators.minLength(2)]], // fullname là FormControl bắt buộc      
       email: ['', [Validators.email]], // Sử dụng Validators.email cho kiểm tra định dạng email
       phone_number: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(11), Validators.pattern("^[0-9]+$")]], // phone_number bắt buộc và ít nhất 6 ký tự
       address: ['', [Validators.required, Validators.minLength(5)]], // address bắt buộc và ít nhất 5 ký tự
@@ -119,9 +119,16 @@ export class OrderComponent implements OnInit{
       }
     });        
   }
+  isFormValid(): boolean {
+    const fieldsToCheck = ['fullname', 'email', 'phone_number', 'address'];
+    return fieldsToCheck.every(fieldName => {
+      const field = this.orderForm.get(fieldName);
+      return field && field.valid;
+    });
+  }
   placeOrder() {
     debugger
-    if (this.orderForm.errors == null) {
+    if (this.orderForm.errors == null && this.isFormValid()) {
       // Gán giá trị từ form vào đối tượng orderData
       /*
       this.orderData.fullname = this.orderForm.get('fullname')!.value;
