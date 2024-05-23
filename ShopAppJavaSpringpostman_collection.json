@@ -28,14 +28,14 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"// test status code \r",
+									"// test status code is 200\r",
 									"pm.test(\"Status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"\r",
 									"\r",
 									"// test responese data\r",
-									"pm.test(\"Test response data\", function() {\r",
+									"pm.test(\"Data not undefined\", function() {\r",
 									"    // get data\r",
 									"    let dataList = pm.response.json().data;\r",
 									"    for(let data of dataList) {\r",
@@ -63,6 +63,11 @@
 									"    dataList.forEach(data => {\r",
 									"        pm.expect(data.name.length).to.be.below(256);\r",
 									"    });\r",
+									"});\r",
+									"\r",
+									"// test status code is 500\r",
+									"pm.test(\"Status code is 500\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
 									"});\r",
 									"\r",
 									"\r",
@@ -112,7 +117,7 @@
 									"\r",
 									"\r",
 									"// test responese data\r",
-									"pm.test(\"Test response data\", function() {\r",
+									"pm.test(\"Data not undefined\", function() {\r",
 									"    // get data\r",
 									"    let data = pm.response.json().data;\r",
 									"        pm.expect(data['id']).not.equal(undefined);\r",
@@ -132,6 +137,11 @@
 									"});\r",
 									"\r",
 									"\r",
+									"// test status code is 500\r",
+									"pm.test(\"Status code is 500\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});\r",
+									"\r",
 									""
 								],
 								"type": "text/javascript",
@@ -146,12 +156,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{API_PREFIX}}categories/10",
+							"raw": "{{API_PREFIX}}categories/0",
 							"host": [
 								"{{API_PREFIX}}categories"
 							],
 							"path": [
-								"10"
+								"0"
 							]
 						}
 					},
@@ -199,7 +209,7 @@
 									"});\r",
 									"\r",
 									"// test duplicate name \r",
-									"pm.test(\"Error message is correct\", function () {\r",
+									"pm.test(\"Error duplicate name\", function () {\r",
 									"    let responseJson = pm.response.json();\r",
 									"    pm.expect(responseJson.message).to.include(\"could not execute statement\");\r",
 									"    pm.expect(responseJson.message).to.include(\"Duplicate entry\");\r",
@@ -229,7 +239,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"1232\"\r\n}",
+							"raw": "{\r\n    \"name\": \"Đồ điện tử\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -281,7 +291,7 @@
 									"});",
 									"",
 									"// test duplicate name ",
-									"pm.test(\"Error message is correct\", function () {",
+									"pm.test(\"Error duplicate name\", function () {",
 									"    let responseJson = pm.response.json();",
 									"    pm.expect(responseJson.message).to.include(\"could not execute statement\");",
 									"    pm.expect(responseJson.message).to.include(\"Duplicate entry\");",
@@ -311,7 +321,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Đồ điện tử\"\r\n}",
+							"raw": "{\r\n    \"name\": \"Tai nghe\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -319,12 +329,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{API_PREFIX}}categories/50",
+							"raw": "{{API_PREFIX}}categories/1",
 							"host": [
 								"{{API_PREFIX}}categories"
 							],
 							"path": [
-								"50"
+								"1"
 							]
 						}
 					},
@@ -394,12 +404,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{API_PREFIX}}categories/41",
+							"raw": "{{API_PREFIX}}categories/13",
 							"host": [
 								"{{API_PREFIX}}categories"
 							],
 							"path": [
-								"41"
+								"13"
 							]
 						}
 					},
@@ -424,7 +434,7 @@
 									"\r",
 									"\r",
 									"// test responese data\r",
-									"pm.test(\"Test response data\", function() {\r",
+									"pm.test(\"Data not undefined\", function() {\r",
 									"    // get data\r",
 									"    let dataList = pm.response.json().data.products;\r",
 									"    for(let data of dataList) {\r",
@@ -572,6 +582,10 @@
 									"// test res time below 1000ms\r",
 									"pm.test(\"Response time is less than 1000ms\", function () {\r",
 									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code is 500\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
 									"});"
 								],
 								"type": "text/javascript",
@@ -595,12 +609,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{API_PREFIX}}products/5812",
+							"raw": "{{API_PREFIX}}products/5888",
 							"host": [
 								"{{API_PREFIX}}products"
 							],
 							"path": [
-								"5812"
+								"5888"
 							]
 						}
 					},
@@ -648,6 +662,10 @@
 									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
 									"});\r",
 									"\r",
+									"pm.test(\"Status code is 500\", function () {\r",
+									"  pm.response.to.have.status(500);\r",
+									"});\r",
+									"\r",
 									"\r",
 									""
 								],
@@ -663,7 +681,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{API_PREFIX}}products/by-ids?ids=5813,5814,5812",
+							"raw": "{{API_PREFIX}}products/by-ids?ids=0,0",
 							"host": [
 								"{{API_PREFIX}}products"
 							],
@@ -673,7 +691,7 @@
 							"query": [
 								{
 									"key": "ids",
-									"value": "5813,5814,5812"
+									"value": "0,0"
 								}
 							]
 						}
@@ -702,7 +720,7 @@
 									"// test res time below 1000ms\r",
 									"pm.test(\"Response time is less than 1000ms\", function () {\r",
 									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
-									"});"
+									"}); "
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -715,7 +733,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJwaG9uZU51bWJlciI6IjEyMzQ1Njc4OTEwIiwidXNlcklkIjoxMiwic3ViIjoiMTIzNDU2Nzg5MTAiLCJleHAiOjE3MTgxNzk2MTd9.wAYmI8oJLKVGAMOjyBGfxDWtNoJ48xRlJSqR56Pm9gw",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJwaG9uZU51bWJlciI6IjEyMzQ1Njc4OTEwIiwidXNlcklkIjoxMiwic3ViIjoiMTIzNDU2Nzg5MTAiLCJleHAiOjE3MTg5ODMyMzR9.cppIyu-6n5T6VZwFCnWxQ6jhdxrAhF7LGrHJ7I3SR24",
 									"type": "string"
 								}
 							]
@@ -732,12 +750,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{API_PREFIX}}products/5832",
+							"raw": "{{API_PREFIX}}products/5812",
 							"host": [
 								"{{API_PREFIX}}products"
 							],
 							"path": [
-								"5832"
+								"5812"
 							]
 						}
 					},
@@ -805,7 +823,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{JWT_TOKEN\n}}",
+									"value": "{{JWT_TOKEN}}",
 									"type": "string"
 								}
 							]
