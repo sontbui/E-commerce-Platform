@@ -45,7 +45,7 @@ export class UserProfileComponent implements OnInit {
     private tokenService: TokenService,
   ){        
     this.userProfileForm = this.formBuilder.group({
-      fullname: ['',[Validators.minLength(5)]],     
+      fullname: ['',[Validators.required,Validators.minLength(5)]],     
       address: ['',[Validators.minLength(10)]],       
       password: ['', [Validators.minLength(6)]], 
       retype_password: ['', [Validators.minLength(6)]], 
