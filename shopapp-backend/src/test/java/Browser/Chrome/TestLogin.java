@@ -10,6 +10,7 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import org.testng.Assert;
 
 public class TestLogin {
 
@@ -31,9 +32,14 @@ public class TestLogin {
 	// Sign in for admin
 	@Test
 	public void TestCase1() throws InterruptedException {
-
 		WebDriver driver = drivers.get(drivers.size() - 1); // Lấy driver hiện tại
-		Helper.login(driver,"0123456789", "123123");
+		Helper.login(driver, "012345236789", "123123");
+
+		// Kiểm tra xem có thông báo lỗi đăng nhập hay không
+		boolean isErrorMessageDisplayed = driver.findElements(By.className("error-message")).size() > 0;
+
+		// Thêm assert để xác nhận rằng không có lỗi đăng nhập
+		assert !isErrorMessageDisplayed : "Đăng nhập thất bại nhưng không được phát hiện.";
 
 		driver.findElement(By.className("password-toggle")).click();
 		Thread.sleep(3000);
@@ -68,7 +74,6 @@ public class TestLogin {
 	@Test
 	public void TestCase5() {
 		WebDriver driver = drivers.get(drivers.size() - 1); // Lấy driver hiện tại
-
 		Helper.login(driver,"0963101750","");
 		Helper.acceptAlert(driver);
 	}

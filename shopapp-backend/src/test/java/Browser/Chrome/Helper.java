@@ -32,6 +32,7 @@ public class Helper {
         } else {
             System.out.println("Invalid locator type provided: " + locator);
             return null;
+
         }
     }
 
@@ -41,6 +42,7 @@ public class Helper {
         if (dropdownElement != null) {
             Select dropdown = new Select(dropdownElement);
             dropdown.selectByIndex(index);
+
         } else {
             System.out.println("No element found with locator: " + locator);
         }
@@ -60,6 +62,7 @@ public class Helper {
             e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
+
         }
     }
 
@@ -67,6 +70,7 @@ public class Helper {
         WebElement element = driver.findElement(by);
         if (element != null && element.getAttribute("value").isEmpty()) {
             element.sendKeys(value);
+
         }
     }
 
@@ -75,6 +79,8 @@ public class Helper {
         driver.findElement(By.name("phone")).sendKeys(phone);
         driver.findElement(By.name("password")).sendKeys(password);
         driver.findElement(By.className("login-button")).click();
+
+
     }
 
     public static void register(WebDriver driver, String phone, String pass, String retypePass, String name, String dob, String address) throws InterruptedException {
@@ -86,6 +92,7 @@ public class Helper {
         driver.findElement(By.name("address")).sendKeys(address);
         Thread.sleep(2000);
         driver.findElement(By.className("register-button")).click();
+
     }
 
 
@@ -97,6 +104,7 @@ public class Helper {
                 // or alert.dismiss(); to cancel
             } catch (Exception e) {
                 break;
+
             }
         }
     }
@@ -107,6 +115,7 @@ public class Helper {
                 alert.dismiss();
             } catch (Exception e) {
                 break;
+
             }
         }
     }
@@ -118,5 +127,17 @@ public class Helper {
             }
         }
         drivers.clear();
+    }
+    public static String getAttribute(WebDriver driver, By by, String attribute) {
+        return driver.findElement(by).getAttribute(attribute);
+    }
+
+    // Kiểm tra xem phần tử có hiển thị hay không
+    public static boolean isElementDisplayed(WebDriver driver, By by) {
+        try {
+            return driver.findElement(by).isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
     }
 }
